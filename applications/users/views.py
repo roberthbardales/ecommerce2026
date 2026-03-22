@@ -6,7 +6,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
-from orders.models import Order, OrderProduct
+# from orders.models import Order, OrderProduct
 
 from .forms import RegistrationForm, UserForm, UserProfileForm
 from .mixins import ActiveAccountMixin, StaffRequiredMixin
