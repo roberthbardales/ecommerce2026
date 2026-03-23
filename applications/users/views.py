@@ -72,7 +72,7 @@ class LoginView(View):
 
 
 class LogoutView(ActiveAccountMixin, View):
-    login_url = "login"
+    login_url = 'app_users:login'
 
     def get(self, request):
         auth.logout(request)
@@ -149,7 +149,7 @@ class ResetPasswordView(View):
 # ---------------------------------------------------------------------------
 
 class DashboardView(ActiveAccountMixin, View):
-    login_url = "login"
+    login_url = 'app_users:login'
     template_name = "users/dashboard.html"
 
     def get(self, request):
@@ -164,7 +164,7 @@ class DashboardView(ActiveAccountMixin, View):
 
 
 class MyOrdersView(ActiveAccountMixin, View):
-    login_url = "login"
+    login_url = 'app_users:login'
     template_name = "users/my_orders.html"
 
     def get(self, request):
@@ -180,7 +180,7 @@ class OrderDetailView(ActiveAccountMixin, View):
     Si el order_id existe pero es de otro usuario → 404, no 403.
     Esto es intencional: no revelar si el recurso existe.
     """
-    login_url = "login"
+    login_url = 'app_users:login'
     template_name = "users/order_detail.html"
 
     def get(self, request, order_id):
@@ -197,7 +197,7 @@ class OrderDetailView(ActiveAccountMixin, View):
 
 
 class EditProfileView(ActiveAccountMixin, View):
-    login_url = "login"
+    login_url = 'app_users:login'
     template_name = "users/edit_profile.html"
 
     def _forms(self, request, userprofile, data=None, files=None):
@@ -233,7 +233,7 @@ class EditProfileView(ActiveAccountMixin, View):
 
 
 class ChangePasswordView(ActiveAccountMixin, View):
-    login_url = "login"
+    login_url = 'app_users:login'
     template_name = "users/change_password.html"
 
     def get(self, request):
