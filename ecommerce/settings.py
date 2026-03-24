@@ -41,6 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'applications.category',
+    'applications.store',
+    'applications.carts',
+    'applications.orders',
+
+
+    'admin_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'applications.category.context_processors.menu_links',  # ya tienes esta
+                'applications.carts.context_processors.counter',
             ],
         },
     },

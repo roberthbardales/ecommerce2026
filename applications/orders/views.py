@@ -1,3 +1,75 @@
-from django.shortcuts import render
+"""
+Orders views — CBV con capa de servicios.
+"""
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.views.generic import View, TemplateView
 
-# Create your views here.
+from .forms import OrderForm
+from . import services
+
+
+# ---------------------------------------------------------------------------
+# Place Order
+# ---------------------------------------------------------------------------
+
+class PlaceOrderView(LoginRequiredMixin, View):
+    login_url = 'app_users:login'
+
+    def get(self, request):
+        return redirect('app_carts:checkout')
+
+    def post(self, request):
+        totals = services.get_cart_totals_for_user(request.user)
+        if not totals:
+            return redirect('app_store:store')
+
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form_data       = form.cleaned_data
+            form_data['ip'] = request.META.get('REMOTE_ADDR', '')
+            order           = services.create_order(request.user, form_data, totals)
+
+            context = {
+                'order':       order,
+                'cart_items':  totals['cart_items'],
+                'total':       totals['total'],
+                'tax':         totals['tax'],
+                'grand_total': totals['grand_total'],
+            }
+            return render(request, 'orders/payments.html', context)
+
+        return redirect('app_carts:checkout')
+
+
+# ---------------------------------------------------------------------------
+# Payments (AJAX — PayPal / pasarela)
+# ---------------------------------------------------------------------------
+
+class PaymentsView(LoginRequiredMixin, View):
+    login_url = 'app_users:login'
+
+    def post(self, request):
+        data = services.process_payment(request)
+        return JsonResponse(data)
+
+
+# ---------------------------------------------------------------------------
+# Order Complete
+# ---------------------------------------------------------------------------
+
+class OrderCompleteView(LoginRequiredMixin, TemplateView):
+    template_name = 'orders/order_complete.html'
+    login_url     = 'app_users:login'
+
+    def get(self, request, *args, **kwargs):
+        order_number = request.GET.get('order_number')
+        trans_id     = request.GET.get('payment_id')
+
+        try:
+            context = services.get_order_complete_context(order_number, trans_id)
+        except Exception:
+            return redirect('app_store:store')
+
+        return self.render_to_response(context)
