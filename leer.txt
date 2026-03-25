@@ -1,0 +1,2 @@
+fixture_safe
+tienes q crear los 4 primeros usuarios manuamente incluyendo el superuser para q no haya conflicto

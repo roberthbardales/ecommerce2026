@@ -1,0 +1,560 @@
+[
+    {
+        "model": "category.category",
+        "pk": 1,
+        "fields": {
+            "category_name": "Computadoras",
+            "description": "Computadoras modernas",
+            "slug": "computadoras",
+            "cat_image": "photos/categories/1007.jpg"
+        }
+    },
+    {
+        "model": "category.category",
+        "pk": 2,
+        "fields": {
+            "category_name": "Ropa de Verano",
+            "description": "Ropa de Verano en promocion",
+            "slug": "ropa-de-verano",
+            "cat_image": "photos/categories/900.jpg"
+        }
+    },
+    {
+        "model": "category.category",
+        "pk": 3,
+        "fields": {
+            "category_name": "Musica y Media",
+            "description": "Artefactos de musica moderna",
+            "slug": "musica-y-media",
+            "cat_image": "photos/categories/400.jpg"
+        }
+    },
+    {
+        "model": "category.category",
+        "pk": 4,
+        "fields": {
+            "category_name": "Muebles de oficina",
+            "description": "Muebles de oficina",
+            "slug": "muebles-de-oficina",
+            "cat_image": "photos/categories/1004.jpg"
+        }
+    },
+    {
+        "model": "category.category",
+        "pk": 5,
+        "fields": {
+            "category_name": "Accesorios Tech",
+            "description": "Gadgets personales",
+            "slug": "accesorios-tech",
+            "cat_image": "photos/categories/1001.jpg"
+        }
+    },
+    {
+        "model": "users.account",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$8LYLwJxGFxSOf6Bw53Um0F$hwRZPYEQgve1hLj8QOWQpuCHctZjy9FCbEyvx2yJlwg=",
+            "first_name": "Juan",
+            "last_name": "Perez",
+            "username": "juan.perez",
+            "email": "juan.perez@gmail.com",
+            "phone_number": "9805693454",
+            "date_joined": "2021-08-05T20:44:03.228Z",
+            "last_login": "2021-08-06T03:02:13.342Z",
+            "is_admin": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_superuser": false
+        }
+    },
+    {
+        "model": "users.account",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$MGqc4qWcbrUWg6Mc7TRKsH$ZJGRS65N/273iuJ0eMNFKWKeDtXKJdJJdCJ/1iQ4oOg=",
+            "first_name": "Vaxi",
+            "last_name": "Drez",
+            "username": "vaxi.drez",
+            "email": "vaxi.drez@gmail.com",
+            "phone_number": "844862574",
+            "date_joined": "2021-08-06T04:44:15.104Z",
+            "last_login": "2021-08-12T20:25:18.139Z",
+            "is_admin": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_superuser": false
+        }
+    },
+    {
+        "model": "users.account",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$tNKFn29J5WLIAC9SaQLHfs$I3bTSfeG4gC0xqSCzUqCugH5ETfDMrxbUTaA15xhoHM=",
+            "first_name": "Lorenzo",
+            "last_name": "Lamas",
+            "username": "javixcm",
+            "email": "javixcm@gmail.com",
+            "phone_number": "5454211",
+            "date_joined": "2021-08-12T17:38:50.499Z",
+            "last_login": "2021-08-12T18:13:15.384Z",
+            "is_admin": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_superuser": false
+        }
+    },
+    {
+        "model": "users.userprofile",
+        "pk": 1,
+        "fields": {
+            "user": 12,
+            "address_line_1": "Av. El Paso 695",
+            "address_line_2": "Departamento 36",
+            "profile_picture": "userprofile/vaxi_vFS8h3g.jpg",
+            "city": "New York",
+            "state": "New York",
+            "country": "USA"
+        }
+    },
+    {
+        "model": "users.userprofile",
+        "pk": 2,
+        "fields": {
+            "user": 13,
+            "address_line_1": "Av. El Cosmos 56",
+            "address_line_2": "Departamento 45",
+            "profile_picture": "userprofile/vaxi_PaLIZGb.jpg",
+            "city": "Houston",
+            "state": "Texas",
+            "country": "USA"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 1,
+        "fields": {
+            "product_name": "Headphones",
+            "slug": "headphones",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "price": 350,
+            "images": "photos/products/800.jpg",
+            "stock": 100,
+            "is_available": true,
+            "category": 5,
+            "created_date": "2021-07-29T17:24:27.842Z",
+            "modified_date": "2021-07-29T17:24:27.842Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 2,
+        "fields": {
+            "product_name": "Camisa Moderna",
+            "slug": "camisa-moderna",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 50,
+            "images": "photos/products/1000.jpg",
+            "stock": 293,
+            "is_available": true,
+            "category": 2,
+            "created_date": "2021-07-29T17:25:19.137Z",
+            "modified_date": "2021-08-12T20:26:40.799Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 3,
+        "fields": {
+            "product_name": "Computadora Desktop",
+            "slug": "computadora-desktop",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 900,
+            "images": "photos/products/1007.jpg",
+            "stock": 0,
+            "is_available": true,
+            "category": 1,
+            "created_date": "2021-07-29T17:25:45.561Z",
+            "modified_date": "2021-07-30T18:58:46.770Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 4,
+        "fields": {
+            "product_name": "Airpods",
+            "slug": "airpods",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 250,
+            "images": "photos/products/700.jpg",
+            "stock": 60,
+            "is_available": true,
+            "category": 5,
+            "created_date": "2021-07-29T17:26:07.612Z",
+            "modified_date": "2021-07-29T17:26:07.612Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 5,
+        "fields": {
+            "product_name": "Macbook Pro",
+            "slug": "macbook-pro",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 3500,
+            "images": "photos/products/1006.jpg",
+            "stock": 9,
+            "is_available": true,
+            "category": 1,
+            "created_date": "2021-07-29T17:26:34.830Z",
+            "modified_date": "2021-07-29T17:26:34.830Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 6,
+        "fields": {
+            "product_name": "Camisa Primavera",
+            "slug": "camisa-primavera",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 90,
+            "images": "photos/products/900.jpg",
+            "stock": 300,
+            "is_available": true,
+            "category": 2,
+            "created_date": "2021-07-29T17:27:03.630Z",
+            "modified_date": "2021-07-29T17:27:03.630Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 7,
+        "fields": {
+            "product_name": "Mouse Logitech",
+            "slug": "mouse-logitech",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 60,
+            "images": "photos/products/500.jpg",
+            "stock": 3,
+            "is_available": true,
+            "category": 5,
+            "created_date": "2021-07-29T17:27:54.558Z",
+            "modified_date": "2021-07-29T17:27:54.558Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 8,
+        "fields": {
+            "product_name": "Monitor MSI",
+            "slug": "monitor-msi",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 340,
+            "images": "photos/products/600.jpg",
+            "stock": 8,
+            "is_available": true,
+            "category": 1,
+            "created_date": "2021-07-29T17:28:22.155Z",
+            "modified_date": "2021-07-29T17:28:22.155Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 9,
+        "fields": {
+            "product_name": "Game Chair",
+            "slug": "game-chair",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 550,
+            "images": "photos/products/1004.jpg",
+            "stock": 2,
+            "is_available": true,
+            "category": 4,
+            "created_date": "2021-07-29T17:28:51.639Z",
+            "modified_date": "2021-07-29T17:28:51.639Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 10,
+        "fields": {
+            "product_name": "Equipo de sonido",
+            "slug": "equipo-de-sonido",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 600,
+            "images": "photos/products/400.jpg",
+            "stock": 3,
+            "is_available": true,
+            "category": 3,
+            "created_date": "2021-07-29T17:29:14.397Z",
+            "modified_date": "2021-07-29T17:29:14.397Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 11,
+        "fields": {
+            "product_name": "IPad Pro",
+            "slug": "ipad-pro",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "price": 800,
+            "images": "photos/products/1002.jpg",
+            "stock": 600,
+            "is_available": true,
+            "category": 1,
+            "created_date": "2021-07-29T17:29:47.930Z",
+            "modified_date": "2021-07-29T17:29:47.930Z"
+        }
+    },
+    {
+        "model": "store.variation",
+        "pk": 1,
+        "fields": {
+            "product": 2,
+            "variation_category": "color",
+            "variation_value": "rojo",
+            "is_active": true,
+            "created_date": "2021-08-04T12:49:24.312Z"
+        }
+    },
+    {
+        "model": "store.variation",
+        "pk": 2,
+        "fields": {
+            "product": 2,
+            "variation_category": "color",
+            "variation_value": "negro",
+            "is_active": true,
+            "created_date": "2021-08-04T12:49:36.368Z"
+        }
+    },
+    {
+        "model": "store.variation",
+        "pk": 3,
+        "fields": {
+            "product": 2,
+            "variation_category": "color",
+            "variation_value": "naranja",
+            "is_active": true,
+            "created_date": "2021-08-04T12:49:47.541Z"
+        }
+    },
+    {
+        "model": "store.variation",
+        "pk": 4,
+        "fields": {
+            "product": 2,
+            "variation_category": "color",
+            "variation_value": "lila",
+            "is_active": true,
+            "created_date": "2021-08-04T12:49:58.064Z"
+        }
+    },
+    {
+        "model": "store.variation",
+        "pk": 5,
+        "fields": {
+            "product": 2,
+            "variation_category": "size",
+            "variation_value": "Large",
+            "is_active": true,
+            "created_date": "2021-08-04T12:50:08.737Z"
+        }
+    },
+    {
+        "model": "store.variation",
+        "pk": 6,
+        "fields": {
+            "product": 2,
+            "variation_category": "size",
+            "variation_value": "Medium",
+            "is_active": true,
+            "created_date": "2021-08-04T12:50:19.681Z"
+        }
+    },
+    {
+        "model": "store.variation",
+        "pk": 7,
+        "fields": {
+            "product": 2,
+            "variation_category": "size",
+            "variation_value": "Short",
+            "is_active": true,
+            "created_date": "2021-08-04T13:31:56.501Z"
+        }
+    },
+    {
+        "model": "store.reviewrating",
+        "pk": 1,
+        "fields": {
+            "product": 2,
+            "user": 1,
+            "subject": "Es un excelente producto!",
+            "review": "Estoy muy contento con llevar esta camisa puesta.",
+            "rating": 5.0,
+            "ip": "127.0.0.1",
+            "status": true,
+            "created_at": "2021-08-12T04:26:33.404Z",
+            "updated_at": "2021-08-12T04:26:33.404Z"
+        }
+    },
+    {
+        "model": "store.reviewrating",
+        "pk": 2,
+        "fields": {
+            "product": 2,
+            "user": 12,
+            "subject": "Buen material",
+            "review": "Camisa moderna de buen material",
+            "rating": 5.0,
+            "ip": "127.0.0.1",
+            "status": true,
+            "created_at": "2021-08-12T20:29:04.717Z",
+            "updated_at": "2021-08-12T20:29:04.717Z"
+        }
+    },
+    {
+        "model": "carts.cart",
+        "pk": 16,
+        "fields": {
+            "cart_id": "okfg48lhp4818joowsgfxj7j9twvuk18",
+            "date_added": "2021-08-08"
+        }
+    },
+    {
+        "model": "carts.cart",
+        "pk": 17,
+        "fields": {
+            "cart_id": "fdcqu48bqsj0dey2p7mt4ap9vtgln9j5",
+            "date_added": "2021-08-09"
+        }
+    },
+    {
+        "model": "carts.cartitem",
+        "pk": 48,
+        "fields": {
+            "user": 1,
+            "product": 2,
+            "cart": null,
+            "quantity": 1,
+            "is_active": true,
+            "variations": [
+                1,
+                5
+            ]
+        }
+    },
+    {
+        "model": "orders.payment",
+        "pk": 12,
+        "fields": {
+            "user": 12,
+            "payment_id": "4KT66232E0205404L",
+            "payment_method": "PayPal",
+            "amount_paid": "51.0",
+            "status": "COMPLETED",
+            "created_at": "2021-08-12T14:33:42.996Z"
+        }
+    },
+    {
+        "model": "orders.payment",
+        "pk": 13,
+        "fields": {
+            "user": 12,
+            "payment_id": "4AK2623238751114Y",
+            "payment_method": "PayPal",
+            "amount_paid": "51.0",
+            "status": "COMPLETED",
+            "created_at": "2021-08-12T20:26:40.746Z"
+        }
+    },
+    {
+        "model": "orders.order",
+        "pk": 23,
+        "fields": {
+            "user": 12,
+            "payment": 12,
+            "order_number": "2021081223",
+            "first_name": "Vaxi",
+            "last_name": "Drez",
+            "phone": "98112474",
+            "email": "vaxi.drez@gmail.com",
+            "address_line_1": "Av. El Paso 454",
+            "address_line_2": "Departamento 45",
+            "state": "Texas",
+            "city": "Houston",
+            "country": "USA",
+            "order_note": "Camisa moderna",
+            "order_total": 51.0,
+            "tax": 1.0,
+            "status": "New",
+            "ip": "127.0.0.1",
+            "is_ordered": true,
+            "created_at": "2021-08-12T14:33:14.303Z",
+            "updated_at": "2021-08-12T14:33:43.003Z"
+        }
+    },
+    {
+        "model": "orders.order",
+        "pk": 24,
+        "fields": {
+            "user": 12,
+            "payment": 13,
+            "order_number": "2021081224",
+            "first_name": "Vaxi",
+            "last_name": "Drez",
+            "phone": "981364451",
+            "email": "vaxi.drez@gmail.com",
+            "address_line_1": "Av. El Paso 454",
+            "address_line_2": "Dpto: 45",
+            "state": "Texas",
+            "city": "Houston",
+            "country": "USA",
+            "order_note": "Camisa de moda",
+            "order_total": 51.0,
+            "tax": 1.0,
+            "status": "New",
+            "ip": "127.0.0.1",
+            "is_ordered": true,
+            "created_at": "2021-08-12T20:26:15.449Z",
+            "updated_at": "2021-08-12T20:26:40.753Z"
+        }
+    },
+    {
+        "model": "orders.orderproduct",
+        "pk": 10,
+        "fields": {
+            "order": 23,
+            "payment": 12,
+            "user": 12,
+            "product": 2,
+            "quantity": 1,
+            "product_price": 50.0,
+            "ordered": true,
+            "created_at": "2021-08-12T14:33:43.011Z",
+            "updated_at": "2021-08-12T14:33:43.026Z",
+            "variations": [
+                2,
+                5
+            ]
+        }
+    },
+    {
+        "model": "orders.orderproduct",
+        "pk": 11,
+        "fields": {
+            "order": 24,
+            "payment": 13,
+            "user": 12,
+            "product": 2,
+            "quantity": 1,
+            "product_price": 50.0,
+            "ordered": true,
+            "created_at": "2021-08-12T20:26:40.760Z",
+            "updated_at": "2021-08-12T20:26:40.772Z",
+            "variations": [
+                1,
+                6
+            ]
+        }
+    }
+]
