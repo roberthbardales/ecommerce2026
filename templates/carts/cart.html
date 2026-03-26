@@ -48,17 +48,13 @@
 		<div class="col">
 			<div class="input-group input-spinner">
 				<div class="input-group-prepend">
-				{# --- pendiente app_carts --- #}
-				{# <a href="{% url 'app_carts:remove_cart' cart_item.product.id cart_item.id %}" class="btn btn-light" type="button"> #}
-				<a href="#" class="btn btn-light" type="button" id="button-plus">
+				<a href="{% url 'app_carts:remove_cart' cart_item.product.id cart_item.id %}" class="btn btn-light" type="button" id="button-plus">
 					<i class="fa fa-minus"></i>
 				</a>
 				</div>
 				<input type="text" class="form-control" value="{{ cart_item.quantity }}">
 				<div class="input-group-append">
-					{# --- pendiente app_carts --- #}
-					{# <form action="{% url 'app_carts:add_cart' cart_item.product.id %}" method="POST"> #}
-					<form action="#" method="POST">
+					<form action="{% url 'app_carts:add_cart' cart_item.product.id %}" method="POST">
 						{% csrf_token %}
 						{% for item in cart_item.variations.all %}
 							<input type="hidden" name="{{ item.variation_category|lower }}" value="{{ item.variation_value|capfirst }}">
@@ -78,9 +74,7 @@
 		</div>
 	</td>
 	<td class="text-right">
-		{# --- pendiente app_carts --- #}
-		{# <a href="{% url 'app_carts:remove_cart_item' cart_item.product.id cart_item.id %}" ... #}
-		<a href="#"
+		<a href="{% url 'app_carts:remove_cart_item' cart_item.product.id cart_item.id %}"
 		   onclick="return confirm('Are you sure you want to delete this item?')"
 		   class="btn btn-danger">Remove</a>
 	</td>
@@ -112,10 +106,8 @@
 			<p class="text-center mb-3">
 				<img src="{% static './images/misc/payments.png' %}" height="26">
 			</p>
-			{# --- pendiente app_orders --- #}
-			{# <a href="{% url 'app_orders:checkout' %}" class="btn btn-primary btn-block"> Checkout </a> #}
-			<a href="#" class="btn btn-primary btn-block">Checkout</a>
-			<a href="{% url 'app_store:store' %}" class="btn btn-light btn-block">Continue Shopping</a>
+			<a href="{% url 'app_carts:checkout' %}" class="btn btn-primary btn-block">Checkout</a>
+			<a href="{% url 'app_store:store' %}" class="btn btn-light btn-block"></a>
 		</div>
 		</div>
 

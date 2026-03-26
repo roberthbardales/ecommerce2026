@@ -51,11 +51,18 @@ class ProductDetailView(DetailView):
     context_object_name = 'single_product'
 
     def get_object(self):
+        from .models import Product
         return get_object_or_404(
-            __import__('applications.store.models', fromlist=['Product']).Product,
+            Product,
             category__slug=self.kwargs['category_slug'],
             slug=self.kwargs['product_slug'],
         )
+
+    def post(self, request, *args, **kwargs):
+        """Redirige el POST al add_cart cuando carts esté implementado."""
+        product = self.get_object()
+        from django.urls import reverse
+        return redirect(reverse('app_carts:add_cart', args=[product.id]))
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

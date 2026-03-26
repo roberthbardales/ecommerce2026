@@ -5,6 +5,6 @@ app_name = "app_home"
 
 urlpatterns = [
     # Auth
-    path("register/", views.RegisterView.as_view(), name="register"),
+    path("", views.HomeView.as_view(), name="home"),
 
 ]

@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'applications.carts',
     'applications.orders',
 
-
     'admin_thumbnails',
 ]
 
