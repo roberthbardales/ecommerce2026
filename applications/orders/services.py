@@ -1,9 +1,12 @@
 """
 Orders services — lógica de negocio desacoplada de las vistas.
+Pasarela: Culqi (https://culqi.com) — soporta tarjetas + Yape + Plin
 """
 import datetime
 import json
 
+import requests
+from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
@@ -81,32 +84,88 @@ def create_order(user, form_data, totals):
 
 
 # ---------------------------------------------------------------------------
-# Process payment
+# Culqi — Process payment
 # ---------------------------------------------------------------------------
 
-def process_payment(request):
+def charge_with_culqi(token: str, amount_soles: float, email: str, order_number: str) -> dict:
     """
-    Procesa el pago (payload JSON), crea Payment y OrderProduct,
-    reduce stock, limpia el carrito y envía email de confirmación.
+    Realiza el cargo a Culqi.
+    - amount_soles: monto en soles (ej: 150.00)
+    - Culqi trabaja en CENTAVOS → multiplicamos x 100
+
+    Retorna el dict de respuesta de Culqi.
+    Lanza Exception si el cargo falla.
+    """
+    amount_centavos = int(round(amount_soles * 100))
+
+    headers = {
+        'Authorization': f'Bearer {settings.CULQI_SECRET_KEY}',
+        'Content-Type':  'application/json',
+    }
+    payload = {
+        'amount':       amount_centavos,
+        'currency_code': 'PEN',
+        'email':        email,
+        'source_id':    token,           # token generado por Culqi.js en el frontend
+        'description':  f'Orden {order_number}',
+    }
+
+    response = requests.post(
+        'https://api.culqi.com/v2/charges',
+        headers=headers,
+        json=payload,
+        timeout=30,
+    )
+    data = response.json()
+    print('CULQI RESPONSE:', data)  # ← agrega esta línea
+
+    # Culqi devuelve 'object': 'error' cuando falla
+    if data.get('object') == 'error':
+        raise Exception(data.get('user_message', 'Error al procesar el pago con Culqi'))
+
+    return data
+
+
+def process_culqi_payment(request):
+    """
+    Procesa el pago con Culqi (payload JSON desde el frontend),
+    crea Payment y OrderProduct, reduce stock, limpia el carrito
+    y envía email de confirmación.
+
+    Payload esperado del frontend:
+        {
+            "orderID":        "20240101-42",
+            "culqiToken":     "tkn_live_xxxx",   # token de Culqi.js
+            "payment_method": "Culqi"
+        }
+
     Retorna dict con order_number y transID.
     """
-    body    = json.loads(request.body)
-    order   = Order.objects.get(
+    body  = json.loads(request.body)
+    order = Order.objects.get(
         user=request.user,
         is_ordered=False,
         order_number=body['orderID'],
     )
 
-    # Crear Payment
-    payment = Payment.objects.create(
-        user           = request.user,
-        payment_id     = body['transID'],
-        payment_method = body['payment_method'],
-        amount_paid    = order.order_total,
-        status         = body['status'],
+    # Cargo real a Culqi
+    culqi_response = charge_with_culqi(
+        token        = body['culqiToken'],
+        amount_soles = order.order_total,
+        email        = order.email,
+        order_number = order.order_number,
     )
 
-    order.payment   = payment
+    # Crear Payment local
+    payment = Payment.objects.create(
+        user           = request.user,
+        payment_id     = culqi_response['id'],          # charge id de Culqi
+        payment_method = body.get('payment_method', 'Culqi'),
+        amount_paid    = order.order_total,
+        status         = culqi_response['outcome']['type'],  # 'venta_exitosa'
+    )
+
+    order.payment    = payment
     order.is_ordered = True
     order.save()
 
@@ -123,10 +182,9 @@ def process_payment(request):
             ordered       = True,
         )
         op.variations.set(item.variations.all())
-        op.save()
 
         # Reducir stock
-        product = Product.objects.get(id=item.product_id)
+        product        = Product.objects.get(id=item.product_id)
         product.stock -= item.quantity
         product.save()
 
@@ -143,7 +201,7 @@ def process_payment(request):
 
 
 def _send_order_confirmation_email(user, order):
-    subject = 'Thank you for your order!'
+    subject = '¡Gracias por tu compra!'
     message = render_to_string('orders/order_recieved_email.html', {
         'user':  user,
         'order': order,

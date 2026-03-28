@@ -12,18 +12,47 @@ from .forms import ReviewForm
 # Productos
 # ---------------------------------------------------------------------------
 
-def get_available_products(category=None, page=None, per_page=6):
+def get_available_products(
+    category=None,
+    min_price=None,
+    max_price=None,
+    page=None,
+    per_page=6
+):
     """
-    Retorna un objeto Page de productos disponibles.
-    Si se pasa category (instancia de Category), filtra por ella.
+    Retorna un objeto Page de productos disponibles con filtros:
+    - categoría
+    - precio mínimo
+    - precio máximo
     """
-    if category is not None:
-        qs = Product.objects.filter(category=category, is_available=True)
-    else:
-        qs = Product.objects.filter(is_available=True).order_by('id')
 
+    qs = Product.objects.filter(is_available=True).order_by('id')
+
+    # -------------------------
+    # FILTRO POR CATEGORÍA
+    # -------------------------
+    if category is not None:
+        qs = qs.filter(category=category)
+
+    # -------------------------
+    # FILTRO POR PRECIO
+    # -------------------------
+    try:
+        if min_price:
+            qs = qs.filter(price__gte=int(min_price))
+
+        if max_price:
+            qs = qs.filter(price__lte=int(max_price))
+    except ValueError:
+        pass
+
+    # -------------------------
+    # PAGINACIÓN
+    # -------------------------
     paginator = Paginator(qs, per_page)
-    return paginator.get_page(page), qs.count()
+    paged_products = paginator.get_page(page)
+
+    return paged_products, qs.count()
 
 
 def get_product_by_slugs(category_slug, product_slug):

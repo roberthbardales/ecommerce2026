@@ -148,3 +148,8 @@ AUTH_USER_MODEL = 'users.Account'
 
 # Email (consola por ahora, sin configurar SMTP)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# ── Culqi (llaves de demo — solo desarrollo local) ──
+CULQI_PUBLIC_KEY = 'pk_test_vzMuTl6OWAgNrYKa'
+CULQI_SECRET_KEY = 'sk_test_UTCQWwCIDgBuXY3Q'

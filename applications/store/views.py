@@ -11,6 +11,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 
 from applications.category.models import Category
+from .models import Product
 
 from . import services
 
@@ -20,21 +21,50 @@ from . import services
 # ---------------------------------------------------------------------------
 
 class StoreView(ListView):
+    model = Product
     template_name = 'store/store.html'
     context_object_name = 'products'
 
     def get_queryset(self):
-        # guardamos la categoría para reusar en get_context_data
         self._category = None
         category_slug = self.kwargs.get('category_slug')
+
         if category_slug:
             self._category = get_object_or_404(Category, slug=category_slug)
+
+        min_price = self.request.GET.get('min_price')
+        max_price = self.request.GET.get('max_price')
         page = self.request.GET.get('page')
+
         self._paged, self._count = services.get_available_products(
             category=self._category,
+            min_price=min_price,
+            max_price=max_price,
             page=page,
         )
+
         return self._paged
+
+def get_queryset(self):
+    self._category = None
+    category_slug = self.kwargs.get('category_slug')
+
+    if category_slug:
+        self._category = get_object_or_404(Category, slug=category_slug)
+
+    # 🔥 NUEVO: filtros desde GET
+    min_price = self.request.GET.get('min_price')
+    max_price = self.request.GET.get('max_price')
+    page = self.request.GET.get('page')
+
+    self._paged, self._count = services.get_available_products(
+        category=self._category,
+        min_price=min_price,
+        max_price=max_price,
+        page=page,
+    )
+
+    return self._paged
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
