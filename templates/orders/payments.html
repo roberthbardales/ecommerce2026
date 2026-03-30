@@ -75,7 +75,7 @@
 
       </aside>
 
-      <!-- ── Columna derecha: totales + botones de pago ── -->
+      <!-- ── Columna derecha: totales + pago ── -->
       <aside class="col-lg-4">
         <div class="card">
           <div class="card-body">
@@ -94,132 +94,288 @@
             </dl>
             <hr>
 
-            <!-- Método de pago -->
-            <div class="mb-3">
-              <label class="font-weight-bold mb-2 d-block">Método de pago</label>
+            <div id="mp-error" class="alert alert-danger d-none" role="alert"></div>
 
-              <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                <label class="btn btn-outline-primary active" id="btn-tarjeta">
-                  <input type="radio" name="payment_method" value="Tarjeta" checked>
-                  <i class="fas fa-credit-card mr-1"></i> Tarjeta
-                </label>
-                <label class="btn btn-outline-success" id="btn-yape">
-                  <input type="radio" name="payment_method" value="Yape">
-                  <img src="{% static 'images/yape-icon.png' %}" height="18" class="mr-1" onerror="this.style.display='none'">
-                  Yape / Plin
-                </label>
-              </div>
+            {% if mp_dev_mode %}
+            <!-- ══ MODO SIMULADO ══ -->
+            <div class="alert alert-warning py-2 mb-3">
+              <i class="fas fa-flask mr-1"></i>
+              <small><strong>Modo simulación activo</strong> — no se procesará cargo real.</small>
             </div>
-
-            <!-- Alerta de error de Culqi -->
-            <div id="culqi-error" class="alert alert-danger d-none" role="alert"></div>
-
-            <!-- Botón de pago -->
-            <button id="btn-pagar" class="btn btn-primary btn-block btn-lg mt-2">
-              <i class="fas fa-lock mr-1"></i> Pagar S/ {{ grand_total }}
+            <button id="btn-pagar-dev" class="btn btn-warning btn-block btn-lg">
+              <i class="fas fa-bolt mr-1"></i> Pagar simulado — S/ {{ grand_total }}
             </button>
 
-            <p class="text-center mt-3 mb-0">
+            {% else %}
+            <!-- ══ MODO REAL ══ -->
+            <div id="form-checkout">
+
+              <div class="form-group">
+                <label class="small font-weight-bold">Número de tarjeta</label>
+                <!-- Badge que muestra Visa/Mastercard detectado -->
+                <div class="input-group">
+                  <input id="cardNumber"
+                         class="form-control"
+                         type="text"
+                         inputmode="numeric"
+                         maxlength="19"
+                         placeholder="1234 5678 9012 3456"
+                         autocomplete="cc-number">
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="card-brand" style="min-width:60px;font-size:11px;"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-7">
+                  <div class="form-group">
+                    <label class="small font-weight-bold">Vencimiento</label>
+                    <input id="cardExpiration"
+                           class="form-control"
+                           type="text"
+                           inputmode="numeric"
+                           maxlength="5"
+                           placeholder="MM/AA"
+                           autocomplete="cc-exp">
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="form-group">
+                    <label class="small font-weight-bold">CVV</label>
+                    <input id="securityCode"
+                           class="form-control"
+                           type="text"
+                           inputmode="numeric"
+                           maxlength="4"
+                           placeholder="123"
+                           autocomplete="cc-csc">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="small font-weight-bold">Nombre en la tarjeta</label>
+                <input id="cardholderName"
+                       class="form-control"
+                       type="text"
+                       placeholder="Como aparece en la tarjeta"
+                       autocomplete="cc-name">
+              </div>
+
+              <button id="btn-pagar-real" class="btn btn-primary btn-block btn-lg mt-2">
+                <i class="fas fa-lock mr-1"></i> Pagar S/ {{ grand_total }}
+              </button>
+
+            </div>
+
+            <p class="text-center mt-2 mb-0">
               <small class="text-muted">
                 <i class="fas fa-shield-alt mr-1"></i>
-                Pago seguro con <strong>Culqi</strong> — PCI DSS Level 1
+                Pago seguro con <strong>Mercado Pago</strong>
               </small>
             </p>
+            {% endif %}
 
           </div>
         </div>
       </aside>
 
-    </div><!-- /row -->
-
+    </div>
   </div>
 </section>
 
-<!-- ── Culqi.js ── -->
-<script src="https://checkout.culqi.com/js/v4"></script>
+{% if not mp_dev_mode %}
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+{% endif %}
 
 <script>
-  // ── Configuración Culqi ──────────────────────────────────────────────────
-  var culqi;
+  var ORDER_ID     = '{{ order.order_number }}';
+  var AMOUNT       = {{ grand_total|stringformat:"f" }};
+  var PAYMENTS_URL = "{% url 'app_orders:payments' %}";
+  var DEV_MODE     = {{ mp_dev_mode|yesno:"true,false" }};
 
-  var settings = {
-    title:    'Mi Tienda',
-    currency: 'PEN',
-    amount:   {{ grand_total_centavos }},   // en CENTAVOS (ej: 15000 = S/150.00)
-    order:    '{{ order.order_number }}',
-  };
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      document.cookie.split(';').forEach(function(c) {
+        var cookie = c.trim();
+        if (cookie.startsWith(name + '='))
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+      });
+    }
+    return cookieValue;
+  }
 
-  // Llave pública de Culqi (solo lectura, va en el frontend)
-  Culqi.publicKey = '{{ culqi_public_key }}';
-  Culqi.settings(settings);
+  function showError(msg) {
+    var errorDiv = document.getElementById('mp-error');
+    errorDiv.textContent = msg;
+    errorDiv.classList.remove('d-none');
+  }
 
-  // Callback que Culqi llama cuando genera el token exitosamente
-  function culqi(token) {
-    var errorDiv = document.getElementById('culqi-error');
-    errorDiv.classList.add('d-none');
+  function sendPayment(payload) {
+    document.getElementById('mp-error').classList.add('d-none');
 
-    // Token generado → enviamos al backend
-    var paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
-
-    fetch("{% url 'app_orders:payments' %}", {
-      method:  'POST',
+    fetch(PAYMENTS_URL, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken':  getCookie('csrftoken'),
       },
-      body: JSON.stringify({
-        orderID:        '{{ order.order_number }}',
-        culqiToken:     token.id,
-        payment_method: paymentMethod,
-      }),
+      body: JSON.stringify(payload),
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
       if (data.error) {
-        errorDiv.textContent = data.error;
-        errorDiv.classList.remove('d-none');
+        showError(data.error);
+        var btn = document.getElementById('btn-pagar-real') || document.getElementById('btn-pagar-dev');
+        if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.original; }
         return;
       }
-      // Redirigir a la página de confirmación
-      var redirectUrl = "{% url 'app_orders:order_complete' %}"
+      window.location.href = "{% url 'app_orders:order_complete' %}"
         + '?order_number=' + data.order_number
         + '&payment_id='   + data.transID;
-      window.location.href = redirectUrl;
     })
-    .catch(() => {
-      errorDiv.textContent = 'Error de conexión. Intenta nuevamente.';
-      errorDiv.classList.remove('d-none');
+    .catch(function() {
+      showError('Error de conexión. Intenta nuevamente.');
     });
   }
 
-  // Abrir el checkout de Culqi al hacer clic en "Pagar"
-  document.getElementById('btn-pagar').addEventListener('click', function () {
-    // Ajustar opciones según método elegido
-    var method = document.querySelector('input[name="payment_method"]:checked').value;
+  /* ══ MODO SIMULADO ════════════════════════════════════════════════════ */
+  if (DEV_MODE) {
+    var btnDev = document.getElementById('btn-pagar-dev');
+    btnDev.dataset.original = btnDev.innerHTML;
+    btnDev.addEventListener('click', function () {
+      this.disabled    = true;
+      this.textContent = 'Procesando...';
+      sendPayment({
+        orderID:           ORDER_ID,
+        mp_token:          'dev-token-simulado',
+        payment_method:    'Simulado',
+        installments:      1,
+        payment_method_id: 'visa',
+      });
+    });
 
-    if (method === 'Yape') {
-      Culqi.options({ paymentMethods: { yape: true, tarjeta: false, bancaMovil: false } });
-    } else {
-      Culqi.options({ paymentMethods: { tarjeta: true, yape: false, bancaMovil: false } });
-    }
+  /* ══ MODO REAL ════════════════════════════════════════════════════════ */
+  } else {
+    var mp = new MercadoPago('{{ mp_public_key }}', { locale: 'es-PE' });
 
-    Culqi.open();
-  });
+    // payment_method_id detectado al escribir el número de tarjeta
+    var detectedPaymentMethodId = null;
 
-  // Helper CSRF
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith(name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
+    /* ── Formateo número de tarjeta + detección automática de marca ── */
+    document.getElementById('cardNumber').addEventListener('input', function () {
+      // Formatear con espacios cada 4 dígitos
+      var digits = this.value.replace(/\D/g, '').substring(0, 16);
+      this.value = digits.replace(/(.{4})/g, '$1 ').trim();
+
+      var bin = digits.substring(0, 6);
+      var brandBadge = document.getElementById('card-brand');
+
+      // Consultar el payment_method_id a MP cuando tengamos 6 dígitos (BIN completo)
+      if (bin.length === 6) {
+        mp.getPaymentMethods({ bin: bin })
+          .then(function(result) {
+            if (result.results && result.results.length > 0) {
+              var method = result.results[0];
+              detectedPaymentMethodId = method.id;  // ej: 'visa', 'master', 'amex'
+              brandBadge.textContent  = method.name; // ej: 'Visa', 'Mastercard'
+              console.log('MP payment_method_id detectado:', detectedPaymentMethodId);
+            }
+          })
+          .catch(function(err) {
+            console.warn('MP getPaymentMethods error:', err);
+          });
+      } else {
+        // Limpiar si borran dígitos
+        if (bin.length < 6) {
+          detectedPaymentMethodId = null;
+          brandBadge.textContent  = '';
         }
       }
-    }
-    return cookieValue;
+    });
+
+    /* ── Formateo automático MM/AA ─────────────────────────────────── */
+    document.getElementById('cardExpiration').addEventListener('input', function () {
+      var val = this.value.replace(/\D/g, '');
+      if (val.length > 2) {
+        val = val.substring(0, 2) + '/' + val.substring(2, 4);
+      }
+      this.value = val;
+    });
+
+    /* ── Click en Pagar ────────────────────────────────────────────── */
+    document.getElementById('btn-pagar-real').addEventListener('click', function () {
+      var btn = this;
+      document.getElementById('mp-error').classList.add('d-none');
+
+      // Separar MM/AA
+      var expRaw   = document.getElementById('cardExpiration').value;
+      var expParts = expRaw.split('/');
+      var expMonth = (expParts[0] || '').trim();
+      var expYear  = (expParts[1] || '').trim();
+
+      var rawNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+
+      // Validaciones
+      if (rawNumber.length < 13) {
+        showError('Ingresa un número de tarjeta válido.'); return;
+      }
+      if (expMonth.length !== 2 || expYear.length !== 2) {
+        showError('Ingresa la fecha de vencimiento en formato MM/AA.'); return;
+      }
+      if (!document.getElementById('securityCode').value) {
+        showError('Ingresa el CVV.'); return;
+      }
+      if (!document.getElementById('cardholderName').value.trim()) {
+        showError('Ingresa el nombre como aparece en la tarjeta.'); return;
+      }
+      if (!detectedPaymentMethodId) {
+        showError('No se pudo detectar el tipo de tarjeta. Verifica el número.'); return;
+      }
+
+      btn.dataset.original = btn.innerHTML;
+      btn.disabled         = true;
+      btn.textContent      = 'Procesando...';
+
+      var cardData = {
+        cardNumber:           rawNumber,
+        cardholderName:       document.getElementById('cardholderName').value,
+        cardExpirationMonth:  expMonth,
+        cardExpirationYear:   expYear,
+        securityCode:         document.getElementById('securityCode').value,
+        identificationType:   'DNI',
+        identificationNumber: '00000000',
+      };
+
+      mp.createCardToken(cardData)
+        .then(function(result) {
+          if (!result.id) {
+            var msg = (result.cause && result.cause[0])
+              ? result.cause[0].description
+              : 'Error al tokenizar la tarjeta.';
+            showError(msg);
+            btn.disabled  = false;
+            btn.innerHTML = btn.dataset.original;
+            return;
+          }
+
+          sendPayment({
+            orderID:           ORDER_ID,
+            mp_token:          result.id,
+            payment_method:    'Mercado Pago',
+            installments:      1,
+            payment_method_id: detectedPaymentMethodId,  // ← detectado desde el BIN
+          });
+        })
+        .catch(function(err) {
+          console.error('MP createCardToken error:', err);
+          showError('No se pudo procesar la tarjeta. Verifica los datos.');
+          btn.disabled  = false;
+          btn.innerHTML = btn.dataset.original;
+        });
+    });
   }
 </script>
 

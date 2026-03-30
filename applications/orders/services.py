@@ -1,11 +1,13 @@
 """
 Orders services — lógica de negocio desacoplada de las vistas.
-Pasarela: Culqi (https://culqi.com) — soporta tarjetas + Yape + Plin
+Pasarela: Mercado Pago Checkout API (transparente)
+  MP_DEV_MODE = True  → pago simulado con UUID, sin llamar a MP
+  MP_DEV_MODE = False → llama a la API real de Mercado Pago
 """
 import datetime
 import json
+import uuid
 
-import requests
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -16,7 +18,7 @@ from .models import Order, OrderProduct, Payment
 
 
 # ---------------------------------------------------------------------------
-# Helpers
+# Helpers (sin cambios respecto a la versión Culqi)
 # ---------------------------------------------------------------------------
 
 def generate_order_number(order_id):
@@ -53,7 +55,7 @@ def get_cart_totals_for_user(user):
 
 
 # ---------------------------------------------------------------------------
-# Place order
+# Place order (sin cambios)
 # ---------------------------------------------------------------------------
 
 def create_order(user, form_data, totals):
@@ -84,62 +86,24 @@ def create_order(user, form_data, totals):
 
 
 # ---------------------------------------------------------------------------
-# Culqi — Process payment
+# Mercado Pago — Process payment
 # ---------------------------------------------------------------------------
 
-def charge_with_culqi(token: str, amount_soles: float, email: str, order_number: str) -> dict:
+def process_mp_payment(request):
     """
-    Realiza el cargo a Culqi.
-    - amount_soles: monto en soles (ej: 150.00)
-    - Culqi trabaja en CENTAVOS → multiplicamos x 100
+    Procesa el pago con Mercado Pago (payload JSON desde el frontend).
 
-    Retorna el dict de respuesta de Culqi.
-    Lanza Exception si el cargo falla.
-    """
-    amount_centavos = int(round(amount_soles * 100))
-
-    headers = {
-        'Authorization': f'Bearer {settings.CULQI_SECRET_KEY}',
-        'Content-Type':  'application/json',
-    }
-    payload = {
-        'amount':       amount_centavos,
-        'currency_code': 'PEN',
-        'email':        email,
-        'source_id':    token,           # token generado por Culqi.js en el frontend
-        'description':  f'Orden {order_number}',
-    }
-
-    response = requests.post(
-        'https://api.culqi.com/v2/charges',
-        headers=headers,
-        json=payload,
-        timeout=30,
-    )
-    data = response.json()
-    print('CULQI RESPONSE:', data)  # ← agrega esta línea
-
-    # Culqi devuelve 'object': 'error' cuando falla
-    if data.get('object') == 'error':
-        raise Exception(data.get('user_message', 'Error al procesar el pago con Culqi'))
-
-    return data
-
-
-def process_culqi_payment(request):
-    """
-    Procesa el pago con Culqi (payload JSON desde el frontend),
-    crea Payment y OrderProduct, reduce stock, limpia el carrito
-    y envía email de confirmación.
-
-    Payload esperado del frontend:
+    Payload esperado:
         {
-            "orderID":        "20240101-42",
-            "culqiToken":     "tkn_live_xxxx",   # token de Culqi.js
-            "payment_method": "Culqi"
+            "orderID":            "20240101-42",
+            "mp_token":           "...",   <- cardToken de MercadoPago.js (vacío en DEV)
+            "payment_method":     "Tarjeta",
+            "installments":       1,
+            "payment_method_id":  "visa"   <- MP lo detecta del token
         }
 
     Retorna dict con order_number y transID.
+    Lanza Exception si el pago es rechazado.
     """
     body  = json.loads(request.body)
     order = Order.objects.get(
@@ -148,28 +112,41 @@ def process_culqi_payment(request):
         order_number=body['orderID'],
     )
 
-    # Cargo real a Culqi
-    culqi_response = charge_with_culqi(
-        token        = body['culqiToken'],
-        amount_soles = order.order_total,
-        email        = order.email,
-        order_number = order.order_number,
-    )
+    dev_mode = getattr(settings, 'MP_DEV_MODE', True)
+
+    if dev_mode:
+        # Modo simulado: genera un ID falso, no llama a MP
+        payment_id     = f'MP-SIM-{uuid.uuid4().hex[:12].upper()}'
+        payment_status = 'approved'
+        print(f'[MP DEV] Pago simulado — payment_id={payment_id}')
+    else:
+        # Modo real: llama a la API de Mercado Pago
+        payment_id, payment_status = _charge_with_mp(
+            token             = body.get('mp_token', ''),
+            amount            = order.order_total,
+            email             = order.email,
+            order_number      = order.order_number,
+            installments      = int(body.get('installments', 1)),
+            payment_method_id = body.get('payment_method_id', 'visa'),
+        )
+
+    if payment_status != 'approved':
+        raise Exception(f'Pago no aprobado por Mercado Pago. Estado: {payment_status}')
 
     # Crear Payment local
     payment = Payment.objects.create(
         user           = request.user,
-        payment_id     = culqi_response['id'],          # charge id de Culqi
-        payment_method = body.get('payment_method', 'Culqi'),
+        payment_id     = payment_id,
+        payment_method = body.get('payment_method', 'Mercado Pago'),
         amount_paid    = order.order_total,
-        status         = culqi_response['outcome']['type'],  # 'venta_exitosa'
+        status         = payment_status,
     )
 
     order.payment    = payment
     order.is_ordered = True
     order.save()
 
-    # Mover CartItems → OrderProduct
+    # Mover CartItems a OrderProduct
     cart_items = CartItem.objects.filter(user=request.user)
     for item in cart_items:
         op = OrderProduct.objects.create(
@@ -183,7 +160,6 @@ def process_culqi_payment(request):
         )
         op.variations.set(item.variations.all())
 
-        # Reducir stock
         product        = Product.objects.get(id=item.product_id)
         product.stock -= item.quantity
         product.save()
@@ -200,6 +176,42 @@ def process_culqi_payment(request):
     }
 
 
+def _charge_with_mp(*, token, amount, email, order_number, installments, payment_method_id):
+    """
+    Llama a la API real de Mercado Pago.
+    Retorna (payment_id, status).
+    Lanza Exception si falla.
+    """
+    try:
+        import mercadopago
+    except ImportError:
+        raise ImportError('Instala el SDK: pip install mercadopago')
+
+    sdk = mercadopago.SDK(settings.MP_ACCESS_TOKEN)
+
+    payment_data = {
+        'transaction_amount': float(amount),
+        'token':              token,
+        'description':        f'Orden {order_number}',
+        'installments':       installments,
+        'payment_method_id':  payment_method_id,
+        'payer':              {'email': email},
+        'external_reference': order_number,
+    }
+
+    response = sdk.payment().create(payment_data)
+    result   = response.get('response', {})
+    status   = result.get('status', 'rejected')
+    pay_id   = str(result.get('id', ''))
+
+    print(f'[MP REAL] payment_id={pay_id} status={status} order={order_number}')
+
+    if not pay_id:
+        raise Exception(f'Mercado Pago no devolvio ID. Respuesta: {result}')
+
+    return pay_id, status
+
+
 def _send_order_confirmation_email(user, order):
     subject = '¡Gracias por tu compra!'
     message = render_to_string('orders/order_recieved_email.html', {
@@ -211,7 +223,7 @@ def _send_order_confirmation_email(user, order):
 
 
 # ---------------------------------------------------------------------------
-# Order complete
+# Order complete (sin cambios)
 # ---------------------------------------------------------------------------
 
 def get_order_complete_context(order_number, trans_id):
