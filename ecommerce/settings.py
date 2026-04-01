@@ -1,14 +1,13 @@
 """
 Django settings for ecommerce project.
-Variables sensibles en .env — no hardcodear credenciales aquí.
+Variables sensibles en .env - no hardcodear credenciales aqui.
 """
 import os
 from unipath import Path
 
 BASE_DIR = Path(__file__).ancestor(2)
 
-
-# ── Cargar .env ───────────────────────────────────────────────────────────────
+# -- Cargar .env ---------------------------------------------------------------
 def load_env(env_path):
     try:
         with open(env_path) as f:
@@ -21,16 +20,26 @@ def load_env(env_path):
     except FileNotFoundError:
         pass
 
-
 load_env(BASE_DIR.child('.env'))
 
+# -- Seguridad -----------------------------------------------------------------
+SECRET_KEY = os.environ.get('SECRET_KEY', 'tu_secret_key_temporal')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# ── Seguridad ─────────────────────────────────────────────────────────────────
-SECRET_KEY    = os.environ.get('SECRET_KEY', '')
-DEBUG         = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = [host.strip() for host in os.environ.get('ALLOWED_HOSTS', '').split(',') if host.strip()]
 
-# ── Apps ──────────────────────────────────────────────────────────────────────
+# Nginx maneja el SSL, Django no debe redirigir
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = False
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = [
+"https://carrito.duckdns.org",
+]
+
+# -- Apps ----------------------------------------------------------------------
 INSTALLED_APPS = [
     'applications.users',
     'applications.home',
@@ -82,7 +91,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
-# ── Base de datos ─────────────────────────────────────────────────────────────
+# -- Base de datos -------------------------------------------------------------
 DATABASES = {
     'default': {
         'ENGINE':   'django.db.backends.postgresql_psycopg2',
@@ -94,7 +103,7 @@ DATABASES = {
     }
 }
 
-# ── Auth ──────────────────────────────────────────────────────────────────────
+# -- Auth ----------------------------------------------------------------------
 AUTH_USER_MODEL = 'users.Account'
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -104,14 +113,14 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ── Internacionalización ──────────────────────────────────────────────────────
+# -- Internacionalizacion ------------------------------------------------------
 LANGUAGE_CODE = 'es-pe'
 TIME_ZONE     = 'America/Lima'
 USE_I18N      = True
 USE_L10N      = True
 USE_TZ        = True
 
-# ── Estáticos y media ─────────────────────────────────────────────────────────
+# -- Estaticos y media ---------------------------------------------------------
 STATIC_URL       = '/static/'
 STATICFILES_DIRS = [BASE_DIR.child('static')]
 STATIC_ROOT      = BASE_DIR.child('staticfiles')
@@ -121,7 +130,7 @@ MEDIA_ROOT = BASE_DIR.child('media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ── Email ─────────────────────────────────────────────────────────────────────
+# -- Email ---------------------------------------------------------------------
 EMAIL_BACKEND       = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST          = os.environ.get('EMAIL_HOST',          'smtp.gmail.com')
 EMAIL_PORT          = int(os.environ.get('EMAIL_PORT',      '587'))
@@ -129,7 +138,7 @@ EMAIL_USE_TLS       = os.environ.get('EMAIL_USE_TLS',       'True') == 'True'
 EMAIL_HOST_USER     = os.environ.get('EMAIL_HOST_USER',     '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 
-# ── Mercado Pago ──────────────────────────────────────────────────────────────
+# -- Mercado Pago --------------------------------------------------------------
 MP_DEV_MODE     = os.environ.get('MP_DEV_MODE',     'True') == 'True'
 MP_PUBLIC_KEY   = os.environ.get('MP_PUBLIC_KEY',   '')
 MP_ACCESS_TOKEN = os.environ.get('MP_ACCESS_TOKEN', '')
