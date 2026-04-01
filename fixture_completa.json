@@ -1,0 +1,1776 @@
+[
+{
+  "model": "users.account",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$vYmJdvBxMHPBZPfJhLw5Vo$7y+hWKbEKDie6+eB9PtrPthgc6gg+njEdRO+W/FGtyo=",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "username": "rbardales",
+    "email": "roberthbardales@gmail.com",
+    "phone_number": "",
+    "date_joined": "2026-03-22T23:31:10.749Z",
+    "last_login": "2026-03-30T01:15:32.530Z",
+    "is_admin": true,
+    "is_staff": true,
+    "is_active": true,
+    "is_superuser": true
+  }
+},
+{
+  "model": "users.account",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$cy00eDlkynF88XI0Wlzj39$Nx5jZTvmkrnCcvJ9kXAfQBMluzrxZwQ2hPBiKbciQV8=",
+    "first_name": "juan",
+    "last_name": "perez",
+    "username": "jperez",
+    "email": "jperez@gmail.com",
+    "phone_number": "960174788",
+    "date_joined": "2026-03-23T00:39:50.404Z",
+    "last_login": "2026-03-23T00:45:47.936Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superuser": false
+  }
+},
+{
+  "model": "users.account",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$dRpu3DimPFe0lBpmFX4Ezu$IzYdL6xNUEmXZjCLnao5eaPzx9x9wtSD5o+urlxmpB0=",
+    "first_name": "juan 2",
+    "last_name": "perez 2",
+    "username": "jperez2",
+    "email": "jperez2@gmail.com",
+    "phone_number": "960174555",
+    "date_joined": "2026-03-23T01:11:08.322Z",
+    "last_login": "2026-03-23T01:11:08.322Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superuser": false
+  }
+},
+{
+  "model": "users.account",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$lhnWKjooDAnZBQZ7voLtvv$MFt43XG3m/66zS2fMxJTyCJTbAh+Y9i1GD2yyPXMI6k=",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "username": "hermano",
+    "email": "hermano@gmail.com",
+    "phone_number": "123456789",
+    "date_joined": "2026-03-23T01:14:20.693Z",
+    "last_login": "2026-03-29T23:45:04.677Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superuser": false
+  }
+},
+{
+  "model": "users.account",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$8LYLwJxGFxSOf6Bw53Um0F$hwRZPYEQgve1hLj8QOWQpuCHctZjy9FCbEyvx2yJlwg=",
+    "first_name": "Juan",
+    "last_name": "Perez",
+    "username": "juan.perez",
+    "email": "juan.perez@gmail.com",
+    "phone_number": "9805693454",
+    "date_joined": "2021-08-05T20:44:03.228Z",
+    "last_login": "2021-08-06T03:02:13.342Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superuser": false
+  }
+},
+{
+  "model": "users.account",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$GIeh1UesCbRDh5azK4GWQa$oLmJpCVDr5gY+o/zxDY2PFHqPaSanaMsDtD+CAHDko4=",
+    "first_name": "Vaxi",
+    "last_name": "Drez",
+    "username": "vaxi.drez",
+    "email": "vaxi.drez@gmail.com",
+    "phone_number": "844862574",
+    "date_joined": "2021-08-06T04:44:15.104Z",
+    "last_login": "2026-03-26T01:13:35.105Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superuser": false
+  }
+},
+{
+  "model": "users.account",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$tNKFn29J5WLIAC9SaQLHfs$I3bTSfeG4gC0xqSCzUqCugH5ETfDMrxbUTaA15xhoHM=",
+    "first_name": "Lorenzo",
+    "last_name": "Lamas",
+    "username": "javixcm",
+    "email": "javixcm@gmail.com",
+    "phone_number": "5454211",
+    "date_joined": "2021-08-12T17:38:50.499Z",
+    "last_login": "2021-08-12T18:13:15.384Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superuser": false
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "address_line_1": "Av. El Paso 695",
+    "address_line_2": "Departamento 36",
+    "profile_picture": "userprofile/vaxi_vFS8h3g.jpg",
+    "city": "New York",
+    "state": "New York",
+    "country": "USA"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "javixcm@gmail.com"
+    ],
+    "address_line_1": "Av. El Cosmos 56",
+    "address_line_2": "Departamento 45",
+    "profile_picture": "userprofile/vaxi_PaLIZGb.jpg",
+    "city": "Houston",
+    "state": "Texas",
+    "country": "USA"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "address_line_1": "",
+    "address_line_2": "",
+    "profile_picture": "default/default-user.png",
+    "city": "",
+    "state": "",
+    "country": ""
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0tinnqd8zp6m96b3fppqffvui6mjufox",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAUBf-FtSGUIhdduvcbCNyHVA0kpV0Z_12bdKHbMzPnpWJalxLXznOcSJ2VU4ffLSd8cN0A3VO9NY2tLvOU9abonXZ9bcTPy-7-HZTUy7eG0fLo7dGgOIOYfQiGBAWyDcDJMI1gT84MYjOmgTwIoXcugyfnraj3B-kyODI:1w5apY:xyarHh5AG9rGjuGWAmDo8v91n1Juf1I5A2KnWxbBpGI",
+    "expire_date": "2026-04-09T02:52:20.034Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3idv2a0zcjl6yuhzhrzgj1lu7fiyqhex",
+  "fields": {
+    "session_data": "e30:1w5c0W:uGYnsaF9qM5jFz3jZU5jMkcpssoT47U9JiAe9adEzm0",
+    "expire_date": "2026-04-09T04:07:44.977Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3tdbwqcc9vc8uyp4j5wecnmvsj89f4iy",
+  "fields": {
+    "session_data": "e30:1w5c1u:vHzNeqMgbnmeou3L5w9Q1pMr7UkAhz6R2iAyi14p6e8",
+    "expire_date": "2026-04-09T04:09:10.240Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7kdh1foiyxs83yk5j4sa8b89chum4yut",
+  "fields": {
+    "session_data": "e30:1w5c1H:o1JwGsnHaC5HrAhNiRpuQfhaRpkDDlteAuGFPVqo_4g",
+    "expire_date": "2026-04-09T04:08:31.985Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9oyu6td2id938k166grxvasuwrp0me8o",
+  "fields": {
+    "session_data": "e30:1w4TQR:ls8TGFwxt2SLnFDoyeVgx3nUhLMpPvRkdzVq8tWNea8",
+    "expire_date": "2026-04-06T00:45:47.934Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dcise1o3shi2k3tfwcwz9gawaj3qccjj",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAYKFSX7j0DmRmmUjUlKe3KeHfbpAvd_vfef6uE61LS2mROY1YXZUGdfkdCfsq0k_zA6V4112mZR9K7og_a9K1meV0P9--gYCtbLdEOfSCAQSJIT8Ggz9Z2kYk7Rx5dECMcyYOhwOCJXQZGw-e4maA-XxedOKM:1w5ZHz:fnNKvIw4t16StQg7Gkw3CBMLCK1yEuRL59OZuvdJAIM",
+    "expire_date": "2026-04-09T01:13:35.120Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kber8sbl1zwfsktcfv6u4vbo9pg2rz79",
+  "fields": {
+    "session_data": "e30:1w5c0Y:kJrDs-RQNWVffNZmGwg56paMdHSr8jt7XpsaeOK4ljE",
+    "expire_date": "2026-04-09T04:07:46.155Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lh2wpoa6rsu77216z9ejmpgccks1mjgi",
+  "fields": {
+    "session_data": "e30:1w4TQO:88WJ9Wz4UCj1H2aV9bo6fumIsPDobdnUhNAYB72sFXs",
+    "expire_date": "2026-04-06T00:45:44.423Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mmjllzjeiuudgpa46t0rdsvubjxt0fib",
+  "fields": {
+    "session_data": "e30:1w5cCK:ojlV1BbrAJSfSBAbB5-S0U0svZ86nj98rnbkhkcG7lw",
+    "expire_date": "2026-04-09T04:19:56.289Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nd9ept42pvabwl75oadj6xfjbdr4932r",
+  "fields": {
+    "session_data": "e30:1w5bxu:2WZdBB4pXoddvJUXQPQds4f9B0LDIbJClD9L-Cfkwq0",
+    "expire_date": "2026-04-09T04:05:02.633Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "oc1l03x25prxpcl8w1tgzbpyigchw4p2",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAUBf-FtSGUIhdduvcbCNyHVA0kpV0Z_12bdKHbMzPnpWJalxLXznOcSJ2VU4ffLSd8cN0A3VO9NY2tLvOU9abonXZ9bcTPy-7-HZTUy7eG0fLo7dGgOIOYfQiGBAWyDcDJMI1gT84MYjOmgTwIoXcugyfnraj3B-kyODI:1w5qoZ:3ywRO-G0R10AECmm6t8X8LyePTYta47qTDp7yyRuUaY",
+    "expire_date": "2026-04-09T19:56:23.693Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "q0tltzgf64ueo6ntdnbf4qs5ofixnnn9",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAUBf-FtSGUIhdduvcbCNyHVA0kpV0Z_12bdKHbMzPnpWJalxLXznOcSJ2VU4ffLSd8cN0A3VO9NY2tLvOU9abonXZ9bcTPy-7-HZTUy7eG0fLo7dGgOIOYfQiGBAWyDcDJMI1gT84MYjOmgTwIoXcugyfnraj3B-kyODI:1w4jNq:z1LIiFalft-Mu8AnSjmbDrak8FG5rc2fbCWAzuWP5tU",
+    "expire_date": "2026-04-06T17:48:10.781Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vzy2km2dpn2zfrkkttsmfbm45lh2dibk",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAUBf-FtSGUIhdduvcbCNyHVA0kpV0Z_12bdKHbMzPnpWJalxLXznOcSJ2VU4ffLSd8cN0A3VO9NY2tLvOU9abonXZ9bcTPy-7-HZTUy7eG0fLo7dGgOIOYfQiGBAWyDcDJMI1gT84MYjOmgTwIoXcugyfnraj3B-kyODI:1w5D3g:GXoq72bd4DWK4cjqG5Cr3l1Oz0nCuvK_IDtxoicCE7c",
+    "expire_date": "2026-04-08T01:29:20.542Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wqkp9jag4ma6doke8mqbyiicnicw3npf",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAUBf-FtSGUIhdduvcbCNyHVA0kpV0Z_12bdKHbMzPnpWJalxLXznOcSJ2VU4ffLSd8cN0A3VO9NY2tLvOU9abonXZ9bcTPy-7-HZTUy7eG0fLo7dGgOIOYfQiGBAWyDcDJMI1gT84MYjOmgTwIoXcugyfnraj3B-kyODI:1w5q0q:Q_cqkuB8tzJO_unk_6rgp2mRBXto_UHdSFIo07UB-QU",
+    "expire_date": "2026-04-09T19:05:00.547Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yrefr79bx2mz9gxcu0l95q9xl3bta3fc",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCYUjq4dO8ZyMCAVA0kpV0Z765NutDtf-_9l_C0rcVvPS1-ZnEWWpx-t0DxkeoO-E711mRsdV3mIHdFHrTLa-P0vBzu30GhXr61QmMUOiI1ccCAbggh5WwHMIijQQdRjzG7aAkYYNKcrRl0UuBAu8ji_QHPbjdN:1w71E4:Sk4w-kRDyEnRj-vDZkK58rr-yh_HjKSEKjpI1nrrBzo",
+    "expire_date": "2026-04-13T01:15:32.534Z"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "Computadoras",
+    "slug": "computadoras",
+    "description": "Computadoras modernas",
+    "cat_image": "photos/categories/1007.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "Ropa de Verano",
+    "slug": "ropa-de-verano",
+    "description": "Ropa de Verano en promocion",
+    "cat_image": "photos/categories/900.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "Musica y Media",
+    "slug": "musica-y-media",
+    "description": "Artefactos de musica moderna",
+    "cat_image": "photos/categories/400.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "Muebles de oficina",
+    "slug": "muebles-de-oficina",
+    "description": "Muebles de oficina",
+    "cat_image": "photos/categories/1004.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "Accesorios Tech",
+    "slug": "accesorios-tech",
+    "description": "Gadgets personales",
+    "cat_image": "photos/categories/1001.jpg"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "product_name": "Headphones",
+    "slug": "headphones",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "price": 350,
+    "images": "photos/products/800.jpg",
+    "stock": 98,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2021-07-29T17:24:27.842Z",
+    "modified_date": "2026-03-30T01:15:16.511Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "product_name": "Camisa Moderna",
+    "slug": "camisa-moderna",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 50,
+    "images": "photos/products/1000.jpg",
+    "stock": 290,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2021-07-29T17:25:19.137Z",
+    "modified_date": "2026-03-29T23:42:15.356Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "product_name": "Computadora Desktop",
+    "slug": "computadora-desktop",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 900,
+    "images": "photos/products/1007.jpg",
+    "stock": 0,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2021-07-29T17:25:45.561Z",
+    "modified_date": "2021-07-30T18:58:46.770Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "product_name": "Airpods",
+    "slug": "airpods",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 250,
+    "images": "photos/products/700.jpg",
+    "stock": 59,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2021-07-29T17:26:07.612Z",
+    "modified_date": "2026-03-29T23:45:28.396Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "product_name": "Macbook Pro",
+    "slug": "macbook-pro",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 3500,
+    "images": "photos/products/1006.jpg",
+    "stock": 9,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2021-07-29T17:26:34.830Z",
+    "modified_date": "2021-07-29T17:26:34.830Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "product_name": "Camisa Primavera",
+    "slug": "camisa-primavera",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 90,
+    "images": "photos/products/900.jpg",
+    "stock": 300,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2021-07-29T17:27:03.630Z",
+    "modified_date": "2021-07-29T17:27:03.630Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 7,
+  "fields": {
+    "product_name": "Mouse Logitech",
+    "slug": "mouse-logitech",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 60,
+    "images": "photos/products/500.jpg",
+    "stock": 2,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2021-07-29T17:27:54.558Z",
+    "modified_date": "2026-03-29T03:41:01.884Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 8,
+  "fields": {
+    "product_name": "Monitor MSI",
+    "slug": "monitor-msi",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 340,
+    "images": "photos/products/600.jpg",
+    "stock": 8,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2021-07-29T17:28:22.155Z",
+    "modified_date": "2021-07-29T17:28:22.155Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 9,
+  "fields": {
+    "product_name": "Game Chair",
+    "slug": "game-chair",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 550,
+    "images": "photos/products/1004.jpg",
+    "stock": 2,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2021-07-29T17:28:51.639Z",
+    "modified_date": "2021-07-29T17:28:51.639Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 10,
+  "fields": {
+    "product_name": "Equipo de sonido",
+    "slug": "equipo-de-sonido",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 600,
+    "images": "photos/products/400.jpg",
+    "stock": 3,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2021-07-29T17:29:14.397Z",
+    "modified_date": "2021-07-29T17:29:14.397Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 11,
+  "fields": {
+    "product_name": "IPad Pro",
+    "slug": "ipad-pro",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "price": 800,
+    "images": "photos/products/1002.jpg",
+    "stock": 600,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2021-07-29T17:29:47.930Z",
+    "modified_date": "2021-07-29T17:29:47.930Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 1,
+  "fields": {
+    "product": 2,
+    "variation_category": "color",
+    "variation_value": "rojo",
+    "is_active": true,
+    "created_date": "2021-08-04T12:49:24.312Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "variation_category": "color",
+    "variation_value": "negro",
+    "is_active": true,
+    "created_date": "2021-08-04T12:49:36.368Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 3,
+  "fields": {
+    "product": 2,
+    "variation_category": "color",
+    "variation_value": "naranja",
+    "is_active": true,
+    "created_date": "2021-08-04T12:49:47.541Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 4,
+  "fields": {
+    "product": 2,
+    "variation_category": "color",
+    "variation_value": "lila",
+    "is_active": true,
+    "created_date": "2021-08-04T12:49:58.064Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "variation_category": "size",
+    "variation_value": "Large",
+    "is_active": true,
+    "created_date": "2021-08-04T12:50:08.737Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "variation_category": "size",
+    "variation_value": "Medium",
+    "is_active": true,
+    "created_date": "2021-08-04T12:50:19.681Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "variation_category": "size",
+    "variation_value": "Short",
+    "is_active": true,
+    "created_date": "2021-08-04T13:31:56.501Z"
+  }
+},
+{
+  "model": "store.reviewrating",
+  "pk": 1,
+  "fields": {
+    "product": 2,
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "subject": "Es un excelente producto!",
+    "review": "Estoy muy contento con llevar esta camisa puesta.",
+    "rating": 5.0,
+    "ip": "127.0.0.1",
+    "status": true,
+    "created_at": "2021-08-12T04:26:33.404Z",
+    "updated_at": "2021-08-12T04:26:33.404Z"
+  }
+},
+{
+  "model": "store.reviewrating",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "subject": "Buen material",
+    "review": "Camisa moderna de buen material",
+    "rating": 5.0,
+    "ip": "127.0.0.1",
+    "status": true,
+    "created_at": "2021-08-12T20:29:04.717Z",
+    "updated_at": "2021-08-12T20:29:04.717Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 16,
+  "fields": {
+    "cart_id": "okfg48lhp4818joowsgfxj7j9twvuk18",
+    "date_added": "2021-08-08"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 17,
+  "fields": {
+    "cart_id": "fdcqu48bqsj0dey2p7mt4ap9vtgln9j5",
+    "date_added": "2021-08-09"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 18,
+  "fields": {
+    "cart_id": "siqg8wmvt7g0n29c68i3s3piwjvxmh5c",
+    "date_added": "2026-03-25"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 19,
+  "fields": {
+    "cart_id": "at9c20nsmwygm55dj928cro8x2ise9jt",
+    "date_added": "2026-03-26"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 20,
+  "fields": {
+    "cart_id": "wfyphq9evy5qdikycmuydh2o5tnqh0s3",
+    "date_added": "2026-03-26"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 49,
+  "fields": {
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "product": 2,
+    "cart": null,
+    "quantity": 2,
+    "is_active": true,
+    "variations": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 50,
+  "fields": {
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "product": 2,
+    "cart": null,
+    "quantity": 1,
+    "is_active": true,
+    "variations": [
+      2,
+      6
+    ]
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 51,
+  "fields": {
+    "user": null,
+    "product": 2,
+    "cart": 18,
+    "quantity": 4,
+    "is_active": true,
+    "variations": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 52,
+  "fields": {
+    "user": null,
+    "product": 2,
+    "cart": 18,
+    "quantity": 2,
+    "is_active": true,
+    "variations": [
+      4,
+      7
+    ]
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 58,
+  "fields": {
+    "user": null,
+    "product": 10,
+    "cart": 19,
+    "quantity": 2,
+    "is_active": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 59,
+  "fields": {
+    "user": null,
+    "product": 2,
+    "cart": 19,
+    "quantity": 1,
+    "is_active": true,
+    "variations": [
+      2,
+      6
+    ]
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 60,
+  "fields": {
+    "user": null,
+    "product": 9,
+    "cart": 20,
+    "quantity": 1,
+    "is_active": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 65,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "product": 6,
+    "cart": null,
+    "quantity": 1,
+    "is_active": true,
+    "variations": []
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "payment_id": "4KT66232E0205404L",
+    "payment_method": "PayPal",
+    "amount_paid": "51.0",
+    "status": "COMPLETED",
+    "created_at": "2021-08-12T14:33:42.996Z"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "payment_id": "4AK2623238751114Y",
+    "payment_method": "PayPal",
+    "amount_paid": "51.0",
+    "status": "COMPLETED",
+    "created_at": "2021-08-12T20:26:40.746Z"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment_id": "1345873343",
+    "payment_method": "Mercado Pago",
+    "amount_paid": "102.0",
+    "status": "approved",
+    "created_at": "2026-03-29T03:29:30.252Z"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment_id": "1345874851",
+    "payment_method": "Mercado Pago",
+    "amount_paid": "61.2",
+    "status": "approved",
+    "created_at": "2026-03-29T03:41:01.844Z"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment_id": "1345877283",
+    "payment_method": "Mercado Pago",
+    "amount_paid": "51.0",
+    "status": "approved",
+    "created_at": "2026-03-29T23:42:15.287Z"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment_id": "1345877287",
+    "payment_method": "Mercado Pago",
+    "amount_paid": "357.0",
+    "status": "approved",
+    "created_at": "2026-03-29T23:42:50.819Z"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment_id": "1345877311",
+    "payment_method": "Mercado Pago",
+    "amount_paid": "255.0",
+    "status": "approved",
+    "created_at": "2026-03-29T23:45:28.350Z"
+  }
+},
+{
+  "model": "orders.payment",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment_id": "1345879523",
+    "payment_method": "Mercado Pago",
+    "amount_paid": "357.0",
+    "status": "approved",
+    "created_at": "2026-03-30T01:15:16.461Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 23,
+  "fields": {
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "payment": 12,
+    "order_number": "2021081223",
+    "first_name": "Vaxi",
+    "last_name": "Drez",
+    "phone": "98112474",
+    "email": "vaxi.drez@gmail.com",
+    "address_line_1": "Av. El Paso 454",
+    "address_line_2": "Departamento 45",
+    "country": "USA",
+    "state": "Texas",
+    "city": "Houston",
+    "order_note": "Camisa moderna",
+    "order_total": 51.0,
+    "tax": 1.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2021-08-12T14:33:14.303Z",
+    "updated_at": "2021-08-12T14:33:43.003Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 24,
+  "fields": {
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "payment": 13,
+    "order_number": "2021081224",
+    "first_name": "Vaxi",
+    "last_name": "Drez",
+    "phone": "981364451",
+    "email": "vaxi.drez@gmail.com",
+    "address_line_1": "Av. El Paso 454",
+    "address_line_2": "Dpto: 45",
+    "country": "USA",
+    "state": "Texas",
+    "city": "Houston",
+    "order_note": "Camisa de moda",
+    "order_total": 51.0,
+    "tax": 1.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2021-08-12T20:26:15.449Z",
+    "updated_at": "2021-08-12T20:26:40.753Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 25,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032725",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 2",
+    "order_total": 693.6,
+    "tax": 13.6,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-28T00:30:36.916Z",
+    "updated_at": "2026-03-28T00:30:36.953Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 26,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032726",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd sd",
+    "order_total": 102.0,
+    "tax": 2.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-28T00:46:58.812Z",
+    "updated_at": "2026-03-28T00:46:58.817Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 27,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032827",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 99",
+    "order_total": 102.0,
+    "tax": 2.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T03:11:13.066Z",
+    "updated_at": "2026-03-29T03:11:13.105Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 28,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032828",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 99",
+    "order_total": 102.0,
+    "tax": 2.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T03:19:38.244Z",
+    "updated_at": "2026-03-29T03:19:38.249Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 29,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032829",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 99",
+    "order_total": 102.0,
+    "tax": 2.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T03:19:49.766Z",
+    "updated_at": "2026-03-29T03:19:49.769Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 30,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032830",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 9999",
+    "order_total": 102.0,
+    "tax": 2.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T03:23:15.821Z",
+    "updated_at": "2026-03-29T03:23:15.824Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 31,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032831",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 9999",
+    "order_total": 102.0,
+    "tax": 2.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T03:26:25.187Z",
+    "updated_at": "2026-03-29T03:26:25.190Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 32,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": 14,
+    "order_number": "2026032832",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 102.0,
+    "tax": 2.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2026-03-29T03:28:41.337Z",
+    "updated_at": "2026-03-29T03:29:30.265Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 33,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": 15,
+    "order_number": "2026032833",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 61.2,
+    "tax": 1.2,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2026-03-29T03:39:42.841Z",
+    "updated_at": "2026-03-29T03:41:01.850Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 34,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032934",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "phone": "970643371",
+    "email": "roberthbardales@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 99999",
+    "order_total": 91.8,
+    "tax": 1.8,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T22:56:39.969Z",
+    "updated_at": "2026-03-29T22:56:39.984Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 35,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032935",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "phone": "970643371",
+    "email": "roberthbardales@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 99999",
+    "order_total": 91.8,
+    "tax": 1.8,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T22:57:49.148Z",
+    "updated_at": "2026-03-29T22:57:49.151Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 36,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032936",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "phone": "970643371",
+    "email": "roberthbardales@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 99999",
+    "order_total": 91.8,
+    "tax": 1.8,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T22:57:52.573Z",
+    "updated_at": "2026-03-29T22:57:52.577Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 37,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032937",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "phone": "970643371",
+    "email": "roberthbardales@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "sd 99999",
+    "order_total": 91.8,
+    "tax": 1.8,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T22:57:55.162Z",
+    "updated_at": "2026-03-29T22:57:55.165Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 38,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032938",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "phone": "970643371",
+    "email": "roberthbardales@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 91.8,
+    "tax": 1.8,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T22:58:12.798Z",
+    "updated_at": "2026-03-29T22:58:12.801Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 39,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032939",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "phone": "970643371",
+    "email": "roberthbardales@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 91.8,
+    "tax": 1.8,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T22:58:42.073Z",
+    "updated_at": "2026-03-29T22:58:42.077Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 40,
+  "fields": {
+    "user": [
+      "roberthbardales@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032940",
+    "first_name": "russell",
+    "last_name": "bardales",
+    "phone": "970643371",
+    "email": "roberthbardales@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 91.8,
+    "tax": 1.8,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T22:59:52.421Z",
+    "updated_at": "2026-03-29T22:59:52.426Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 41,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032941",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 357.0,
+    "tax": 7.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T23:01:24.905Z",
+    "updated_at": "2026-03-29T23:01:24.908Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 42,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032942",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 357.0,
+    "tax": 7.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T23:28:35.460Z",
+    "updated_at": "2026-03-29T23:28:35.464Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 43,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032943",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 61.2,
+    "tax": 1.2,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T23:37:04.856Z",
+    "updated_at": "2026-03-29T23:37:04.859Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 44,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": null,
+    "order_number": "2026032944",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 61.2,
+    "tax": 1.2,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": false,
+    "created_at": "2026-03-29T23:40:05.095Z",
+    "updated_at": "2026-03-29T23:40:05.111Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 45,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": 16,
+    "order_number": "2026032945",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 51.0,
+    "tax": 1.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2026-03-29T23:41:49.992Z",
+    "updated_at": "2026-03-29T23:42:15.303Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 46,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": 17,
+    "order_number": "2026032946",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 357.0,
+    "tax": 7.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2026-03-29T23:42:32.722Z",
+    "updated_at": "2026-03-29T23:42:50.819Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 47,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": 18,
+    "order_number": "2026032947",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 255.0,
+    "tax": 5.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2026-03-29T23:45:14.648Z",
+    "updated_at": "2026-03-29T23:45:28.365Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 48,
+  "fields": {
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "payment": 19,
+    "order_number": "2026032948",
+    "first_name": "hermano",
+    "last_name": "bardales",
+    "phone": "123456789",
+    "email": "hermano@gmail.com",
+    "address_line_1": "Jr. Lima 123.",
+    "address_line_2": "Jr. Lima 124",
+    "country": "Perú",
+    "state": "lima",
+    "city": "Lima",
+    "order_note": "",
+    "order_total": 357.0,
+    "tax": 7.0,
+    "status": "New",
+    "ip": "127.0.0.1",
+    "is_ordered": true,
+    "created_at": "2026-03-30T01:15:05.823Z",
+    "updated_at": "2026-03-30T01:15:16.466Z"
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 10,
+  "fields": {
+    "order": 23,
+    "payment": 12,
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "product": 2,
+    "quantity": 1,
+    "product_price": 50.0,
+    "ordered": true,
+    "created_at": "2021-08-12T14:33:43.011Z",
+    "updated_at": "2021-08-12T14:33:43.026Z",
+    "variations": [
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 11,
+  "fields": {
+    "order": 24,
+    "payment": 13,
+    "user": [
+      "vaxi.drez@gmail.com"
+    ],
+    "product": 2,
+    "quantity": 1,
+    "product_price": 50.0,
+    "ordered": true,
+    "created_at": "2021-08-12T20:26:40.760Z",
+    "updated_at": "2021-08-12T20:26:40.772Z",
+    "variations": [
+      1,
+      6
+    ]
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 12,
+  "fields": {
+    "order": 32,
+    "payment": 14,
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "product": 2,
+    "quantity": 2,
+    "product_price": 50.0,
+    "ordered": true,
+    "created_at": "2026-03-29T03:29:30.283Z",
+    "updated_at": "2026-03-29T03:29:30.283Z",
+    "variations": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 13,
+  "fields": {
+    "order": 33,
+    "payment": 15,
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "product": 7,
+    "quantity": 1,
+    "product_price": 60.0,
+    "ordered": true,
+    "created_at": "2026-03-29T03:41:01.871Z",
+    "updated_at": "2026-03-29T03:41:01.871Z",
+    "variations": []
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 14,
+  "fields": {
+    "order": 45,
+    "payment": 16,
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "product": 2,
+    "quantity": 1,
+    "product_price": 50.0,
+    "ordered": true,
+    "created_at": "2026-03-29T23:42:15.310Z",
+    "updated_at": "2026-03-29T23:42:15.325Z",
+    "variations": [
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 15,
+  "fields": {
+    "order": 46,
+    "payment": 17,
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "product": 1,
+    "quantity": 1,
+    "product_price": 350.0,
+    "ordered": true,
+    "created_at": "2026-03-29T23:42:50.850Z",
+    "updated_at": "2026-03-29T23:42:50.850Z",
+    "variations": []
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 16,
+  "fields": {
+    "order": 47,
+    "payment": 18,
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "product": 4,
+    "quantity": 1,
+    "product_price": 250.0,
+    "ordered": true,
+    "created_at": "2026-03-29T23:45:28.381Z",
+    "updated_at": "2026-03-29T23:45:28.381Z",
+    "variations": []
+  }
+},
+{
+  "model": "orders.orderproduct",
+  "pk": 17,
+  "fields": {
+    "order": 48,
+    "payment": 19,
+    "user": [
+      "hermano@gmail.com"
+    ],
+    "product": 1,
+    "quantity": 1,
+    "product_price": 350.0,
+    "ordered": true,
+    "created_at": "2026-03-30T01:15:16.488Z",
+    "updated_at": "2026-03-30T01:15:16.488Z",
+    "variations": []
+  }
+}
+]
