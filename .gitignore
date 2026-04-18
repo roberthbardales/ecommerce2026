@@ -70,3 +70,8 @@ desktop.ini
 .coverage
 htmlcov/
 coverage.xml
+
+# -------------------------
+# Otros
+# -------------------------
+*.bat
