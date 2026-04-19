@@ -33,16 +33,14 @@
     <ul class="list-menu">
 
       <li>
-        <a href="{% url 'app_store:store' %}?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}"
-           class="{% if not request.resolver_match.kwargs.category_slug %}bg-primary text-white px-2 py-1 d-block rounded{% else %}text-dark{% endif %}">
+        <a href="{% url 'app_store:store' %}?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}">
           Todos los productos
         </a>
       </li>
 
       {% for category in links %}
       <li>
-        <a href="{{ category.get_url }}?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}"
-           class="{% if category.slug == request.resolver_match.kwargs.category_slug %}bg-primary text-white px-2 py-1 d-block rounded{% else %}text-dark{% endif %}">
+        <a href="{{ category.get_url }}?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}">
           {{ category.category_name }}
         </a>
       </li>

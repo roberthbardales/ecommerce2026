@@ -5,13 +5,13 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarTop4">
+  <!-- <div class="collapse navbar-collapse" id="navbarTop4">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">English</a>
+        <a href="#" class="nav-link">Español</a>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">USD</a>
+        <a href="#" class="nav-link">PEN</a>
         <ul class="dropdown-menu small">
           <li><a class="dropdown-item" href="#">EUR</a></li>
           <li><a class="dropdown-item" href="#">AED</a></li>
@@ -20,10 +20,10 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-      <li><a href="#" class="nav-link"><i class="fa fa-envelope"></i> Email</a></li>
-      <li><a href="#" class="nav-link"><i class="fa fa-phone"></i> Call us</a></li>
+      <li><a href="#" class="nav-link"><i class="fa fa-envelope"></i> Correo</a></li>
+      <li><a href="#" class="nav-link"><i class="fa fa-phone"></i> Llámanos</a></li>
     </ul>
-  </div>
+  </div> -->
 </div>
 </nav>
 <section class="header-main border-bottom">
@@ -37,21 +37,21 @@
       <div class="col-lg col-sm col-md col-6 flex-grow-0">
         <div class="category-wrap dropdown d-inline-block float-right">
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-bars"></i> All category
+            <i class="fa fa-bars"></i> Todas las categorías
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="">All Products</a>
+            <a class="dropdown-item" href="">Todos los productos</a>
             {% for category in links %}
               <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a>
             {% endfor %}
           </div>
         </div>
       </div>
-      <a href="{% url 'app_store:store' %}" class="btn btn-outline-primary">Store</a>
+      <a href="{% url 'app_store:store' %}" class="btn btn-outline-primary">Tienda</a>
       <div class="col-lg col-md-6 col-sm-12 col">
         <form action="{% url 'app_store:search' %}" class="search" method='GET'>
           <div class="input-group w-100">
-            <input type="text" class="form-control" style="width:60%;" placeholder="Search" name="keyword">
+            <input type="text" class="form-control" style="width:60%;" placeholder="Buscar" name="keyword">
             <div class="input-group-append">
               <button class="btn btn-primary" type="submit">
                 <i class="fa fa-search"></i>
@@ -64,20 +64,20 @@
         <div class="d-flex justify-content-end mb-3 mb-lg-0">
           {% if user.id is None %}
           <div class="widget-header">
-            <small class="title text-muted">Welcome guest!</small>
+            <small class="title text-muted">¡Bienvenido/a, invitado!</small>
             <div>
-              <a href="{% url 'app_users:login' %}">Sign in</a>
+              <a href="{% url 'app_users:login' %}">Iniciar sesión</a>
               <span class="dark-transp"> | </span>
-              <a href="{% url 'app_users:register' %}">Register</a>
+              <a href="{% url 'app_users:register' %}">Registrarse</a>
             </div>
           </div>
           {% else %}
           <div class="widget-header">
-            <small class="title text-muted">Welcome {{ user.first_name }}!</small>
+            <small class="title text-muted">¡Bienvenido/a, {{ user.first_name }}!</small>
             <div>
-              <a href="{% url 'app_users:dashboard' %}">Dashboard</a>
+              <a href="{% url 'app_users:dashboard' %}">Mi cuenta</a>
               <span class="dark-transp"> | </span>
-              <a href="{% url 'app_users:logout' %}">Logout</a>
+              <a href="{% url 'app_users:logout' %}">Salir</a>
             </div>
           </div>
           {% endif %}
