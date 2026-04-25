@@ -3,38 +3,40 @@
 
 {% block content %}
 
-<section class="section-pagetop bg py-2">
+<!-- <section class="store-hero py-2 py-lg-3">
   <div class="container">
-    {% if 'search' in request.path %}
-      <h2 class="title-page">Resultados de búsqueda</h2>
-    {% else %}
-      <h2 class="title-page">Nuestros Productos</h2>
-    {% endif %}
+    <div class="store-hero__panel">
+      {% if 'search' in request.path %}
+        <span class="badge bg-primary mb-3">Búsqueda</span>
+        <h2 class="store-hero__title">Resultados de búsqueda</h2>
+      {% else %}
+        <span class="badge bg-primary mb-3">Catálogo</span>
+        <h2 class="store-hero__title">Nuestros productos</h2>
+      {% endif %}
+      <p class="store-hero__text mb-0">Explora por categoría, filtra por precio y abre cada producto con una vista más clara.</p>
+    </div>
   </div>
-</section>
+</section> -->
 
-<section class="section-content padding-y">
+<section class="section-content store-content padding-y">
 <div class="container">
 
 <div class="row">
 
-<!-- ================= SIDEBAR ================= -->
-<aside class="col-md-3">
+<aside class="col-lg-3 mb-4 mb-lg-0">
+<div class="card store-sidebar border-0 shadow-sm">
 
-<div class="card">
-
-<!-- CATEGORIES -->
 <article class="filter-group">
-  <header class="card-header">
-    <h6 class="title">Categorías</h6>
+  <header class="card-header bg-white border-0 pb-0">
+    <h6 class="store-sidebar__title">Categorías</h6>
   </header>
 
-  <div class="card-body">
-    <ul class="list-menu">
+  <div class="card-body pt-3">
+    <ul class="list-unstyled store-list">
 
       <li>
         <a href="{% url 'app_store:store' %}?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}"
-           class="{% if not request.resolver_match.kwargs.category_slug %}bg-primary text-white px-2 py-1 d-block rounded{% else %}text-dark{% endif %}">
+           class="store-list__link {% if not request.resolver_match.kwargs.category_slug %}active{% endif %}">
           Todos los productos
         </a>
       </li>
@@ -42,7 +44,7 @@
       {% for category in links %}
       <li>
         <a href="{{ category.get_url }}?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}"
-           class="{% if category.slug == request.resolver_match.kwargs.category_slug %}bg-primary text-white px-2 py-1 d-block rounded{% else %}text-dark{% endif %}">
+           class="store-list__link {% if category.slug == request.resolver_match.kwargs.category_slug %}active{% endif %}">
           {{ category.category_name }}
         </a>
       </li>
@@ -52,23 +54,22 @@
   </div>
 </article>
 
-<!-- PRICE FILTER -->
 <article class="filter-group">
-  <header class="card-header">
-    <h6 class="title">Rango de precios</h6>
+  <header class="card-header bg-white border-0 pb-0">
+    <h6 class="store-sidebar__title">Rango de precios</h6>
   </header>
 
-  <div class="card-body">
+  <div class="card-body pt-3">
 
     <form method="GET">
 
-      <div class="form-row">
+      <div class="row g-2">
 
-        <div class="form-group col-md-6">
-          <label>Mín</label>
-          <select name="min_price" class="form-control">
+        <div class="col-6">
+          <label>MÃ­n</label>
+          <select name="min_price" class="form-control form-select">
 
-            <option value="">Mín</option>
+            <option value="">MÃ­n</option>
             <option value="0" {% if request.GET.min_price == "0" %}selected{% endif %}>S/0</option>
             <option value="50" {% if request.GET.min_price == "50" %}selected{% endif %}>S/50</option>
             <option value="100" {% if request.GET.min_price == "100" %}selected{% endif %}>S/100</option>
@@ -78,11 +79,11 @@
           </select>
         </div>
 
-        <div class="form-group col-md-6">
-          <label>Máx</label>
-          <select name="max_price" class="form-control">
+        <div class="col-6">
+          <label>MÃ¡x</label>
+          <select name="max_price" class="form-control form-select">
 
-            <option value="">Máx</option>
+            <option value="">MÃ¡x</option>
             <option value="100" {% if request.GET.max_price == "100" %}selected{% endif %}>S/100</option>
             <option value="200" {% if request.GET.max_price == "200" %}selected{% endif %}>S/200</option>
             <option value="500" {% if request.GET.max_price == "500" %}selected{% endif %}>S/500</option>
@@ -94,7 +95,7 @@
 
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block">
+      <button type="submit" class="btn btn-primary btn-block mt-3 w-100">
         Aplicar
       </button>
 
@@ -106,61 +107,60 @@
 </div>
 </aside>
 
-<!-- ================= MAIN ================= -->
-<main class="col-md-9">
+<main class="col-lg-9">
 
-<header class="border-bottom mb-4 pb-3">
-  <span><b>{{ product_count }}</b> artículos encontrados</span>
+<header class="store-results__header mb-4">
+  <span class="store-results__count"><b>{{ product_count }}</b> artículos encontrados</span>
 </header>
 
-<div class="row">
+<div class="row g-4">
 
 {% if products %}
 
   {% for product in products %}
-  <div class="col-md-4">
-    <figure class="card card-product-grid">
+  <div class="col-6 col-md-4">
+    <div class="card product-card product-card--store h-100 border-0 shadow-sm">
+      <a href="{{ product.get_url }}" class="product-card__image">
+        <img src="{{ product.images.url }}" class="card-img-top" alt="{{ product.product_name }}">
+        <span class="product-card__badge">Nuevo</span>
+      </a>
 
-      <div class="img-wrap">
-        <a href="{{ product.get_url }}">
-          <img src="{{ product.images.url }}">
+      <div class="card-body d-flex flex-column">
+        <a href="{{ product.get_url }}" class="product-card__title text-decoration-none">
+          {{ product.product_name }}
         </a>
-      </div>
 
-      <figcaption class="info-wrap">
+        <div class="product-card__price mt-2">S/ {{ product.price }}</div>
 
-        <div class="fix-height">
-          <a href="{{ product.get_url }}" class="title">
-            {{ product.product_name }}
-          </a>
-
-          <div class="price-wrap mt-2">
-            <span class="price">S/ {{ product.price }}</span>
-          </div>
+        <div class="rating-star product-card__rating mt-2">
+          <span>
+            <i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o{% endif %}" aria-hidden="true"></i>
+            <i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o{% endif %}" aria-hidden="true"></i>
+            <i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o{% endif %}" aria-hidden="true"></i>
+            <i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o{% endif %}" aria-hidden="true"></i>
+            <i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o{% endif %}" aria-hidden="true"></i>
+          </span>
         </div>
 
-        <a href="{{ product.get_url }}" class="btn btn-block btn-success">
+        <a href="{{ product.get_url }}" class="btn btn-outline-success btn-lg mt-3 w-100">
           Ver detalles
         </a>
-
-      </figcaption>
-
-    </figure>
+      </div>
+    </div>
   </div>
   {% endfor %}
 
 {% else %}
   <div class="col-12">
-    <h4>No se encontraron resultados</h4>
+    <div class="alert alert-info mb-0">No se encontraron resultados</div>
   </div>
 {% endif %}
 
 </div>
 
-<!-- PAGINATION -->
-<nav class="mt-4">
+<nav class="store-pagination mt-4">
 {% if products.has_other_pages %}
-  <ul class="pagination">
+  <ul class="pagination justify-content-center flex-wrap gap-2">
 
     {% if products.has_previous %}
     <li class="page-item">
