@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -7,13 +7,13 @@
   <div class="container">
     <div class="store-hero__panel">
       {% if 'search' in request.path %}
-        <span class="badge bg-primary mb-3">Búsqueda</span>
-        <h2 class="store-hero__title">Resultados de búsqueda</h2>
+        <span class="badge bg-primary mb-3">Busqueda</span>
+        <h2 class="store-hero__title">Resultados de bÃºsqueda</h2>
       {% else %}
-        <span class="badge bg-primary mb-3">Catálogo</span>
+        <span class="badge bg-primary mb-3">Catalogo</span>
         <h2 class="store-hero__title">Nuestros productos</h2>
       {% endif %}
-      <p class="store-hero__text mb-0">Explora por categoría, filtra por precio y abre cada producto con una vista más clara.</p>
+      <p class="store-hero__text mb-0">Explora por categorÃ­a, filtra por precio y abre cada producto con una vista mas clara.</p>
     </div>
   </div>
 </section> -->
@@ -27,9 +27,9 @@
 <div class="card store-sidebar border-0 shadow-sm">
 
 <article class="filter-group">
-  <header class="card-header bg-white border-0 pb-0">
-    <h6 class="store-sidebar__title">Categorías</h6>
-  </header>
+  <!-- <header class="card-header bg-white border-0 pb-0">
+    <h6 class="store-sidebar__title">Categorias</h6>
+  </header> -->
 
   <div class="card-body pt-3">
     <ul class="list-unstyled store-list">
@@ -66,10 +66,10 @@
       <div class="row g-2">
 
         <div class="col-6">
-          <label>MÃ­n</label>
+          <label>Min</label>
           <select name="min_price" class="form-control form-select">
 
-            <option value="">MÃ­n</option>
+            <option value="">Min</option>
             <option value="0" {% if request.GET.min_price == "0" %}selected{% endif %}>S/0</option>
             <option value="50" {% if request.GET.min_price == "50" %}selected{% endif %}>S/50</option>
             <option value="100" {% if request.GET.min_price == "100" %}selected{% endif %}>S/100</option>
@@ -80,10 +80,10 @@
         </div>
 
         <div class="col-6">
-          <label>MÃ¡x</label>
+          <label>Max</label>
           <select name="max_price" class="form-control form-select">
 
-            <option value="">MÃ¡x</option>
+            <option value="">Max</option>
             <option value="100" {% if request.GET.max_price == "100" %}selected{% endif %}>S/100</option>
             <option value="200" {% if request.GET.max_price == "200" %}selected{% endif %}>S/200</option>
             <option value="500" {% if request.GET.max_price == "500" %}selected{% endif %}>S/500</option>
@@ -110,7 +110,11 @@
 <main class="col-lg-9">
 
 <header class="store-results__header mb-4">
-  <span class="store-results__count"><b>{{ product_count }}</b> artículos encontrados</span>
+  <div class="store-results__copy">
+    <span class="store-results__eyebrow">Catálogo disponible</span>
+    <h2 class="store-results__title mb-0">Resultados encontrados</h2>
+  </div>
+  <span class="store-results__count"><b>{{ product_count }}</b> artículos</span>
 </header>
 
 <div class="row g-4">
@@ -118,11 +122,10 @@
 {% if products %}
 
   {% for product in products %}
-  <div class="col-6 col-md-4">
+  <div class="col-6 col-md-3">
     <div class="card product-card product-card--store h-100 border-0 shadow-sm">
       <a href="{{ product.get_url }}" class="product-card__image">
         <img src="{{ product.images.url }}" class="card-img-top" alt="{{ product.product_name }}">
-        <span class="product-card__badge">Nuevo</span>
       </a>
 
       <div class="card-body d-flex flex-column">
@@ -142,7 +145,7 @@
           </span>
         </div>
 
-        <a href="{{ product.get_url }}" class="btn btn-outline-success btn-lg mt-3 w-100">
+        <a href="{{ product.get_url }}" class="btn btn-outline-success btn-sm mt-3 w-100">
           Ver detalles
         </a>
       </div>
@@ -203,3 +206,4 @@
 </section>
 
 {% endblock %}
+

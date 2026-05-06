@@ -35,6 +35,12 @@
                             <span class="badge bg-primary align-self-start mb-3">Detalle del producto</span>
                             <h1 class="product-detail__title">{{ single_product.product_name }}</h1>
 
+                            <div class="product-detail__meta mt-2">
+                                <span class="product-detail__meta-item">SKU: {{ single_product.id }}</span>
+                                <span class="product-detail__meta-divider">•</span>
+                                <span class="product-detail__meta-item">Stock: {{ single_product.stock }}</span>
+                            </div>
+
                             <div class="rating-star product-detail__rating mt-2">
                                 <span>
                                     <i class="fa fa-star{% if single_product.averageReview < 0.5 %}-o{% elif single_product.averageReview >= 0.5 and single_product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
@@ -55,9 +61,9 @@
                             <div class="row g-3 mt-1">
                                 {% if single_product.variation_set.colors %}
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Elige un color</label>
+                                    <label class="form-label fw-semibold">Color</label>
                                     <select name="color" class="form-control form-select" required>
-                                        <option value="" disabled selected>Seleccionar</option>
+                                        <option value="" disabled selected>Selecciona un color</option>
                                         {% for i in single_product.variation_set.colors %}
                                             <option value="{{ i.variation_value|lower }}">{{ i.variation_value|capfirst }}</option>
                                         {% endfor %}
@@ -67,9 +73,9 @@
 
                                 {% if single_product.variation_set.sizes %}
                                 <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Elige una talla</label>
+                                    <label class="form-label fw-semibold">Talla</label>
                                     <select name="size" class="form-control form-select">
-                                        <option value="" disabled selected>Seleccionar</option>
+                                        <option value="" disabled selected>Selecciona una talla</option>
                                         {% for i in single_product.variation_set.sizes %}
                                             <option value="{{ i.variation_value|lower }}">{{ i.variation_value|capfirst }}</option>
                                         {% endfor %}
@@ -82,7 +88,7 @@
                                 {% if single_product.stock <= 0 %}
                                     <div class="alert alert-danger mb-0">Sin stock</div>
                                 {% else %}
-                                    <button type="submit" class="btn btn-success btn-lg w-100 product-detail__cart-btn">
+                                    <button type="submit" class="btn btn-success btn-lg product-detail__cart-btn">
                                         <i class="fas fa-shopping-cart me-2"></i>
                                         Agregar al carrito
                                     </button>

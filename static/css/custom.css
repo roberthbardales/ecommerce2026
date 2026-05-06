@@ -300,13 +300,49 @@ ul.thumb li img{
 .store-results__header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid #e5e7eb;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 0.5rem 1.5rem rgba(15, 23, 42, 0.05);
+}
+
+.store-results__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.store-results__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0d6efd;
+}
+
+.store-results__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #111827;
 }
 
 .store-results__count {
-  color: #374151;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: #0d6efd;
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.store-results__count b {
+  font-size: 1.05rem;
 }
 
 .product-card--store .product-card__badge {
@@ -345,20 +381,60 @@ ul.thumb li img{
 
 /* Product detail */
 .product-detail__card {
-  border-radius: 1.25rem;
+  border-radius: 1rem;
   overflow: hidden;
 }
 
 .product-detail__gallery {
   background: #f8fafc;
-  border-radius: 1rem;
+  border-radius: 0.9rem;
   overflow: hidden;
 }
 
 .product-detail__main img {
   width: 100%;
-  object-fit: cover;
-  border-radius: 1rem;
+  object-fit: contain;
+  border-radius: 0.9rem;
+  max-height: 420px;
+  background: #f8fafc;
+}
+
+.product-detail__summary .content-body {
+  padding: 0.85rem !important;
+}
+
+.product-detail__summary .product-detail__title {
+  font-size: 1.65rem;
+}
+
+.product-detail__summary .product-detail__price {
+  font-size: 1.5rem;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.product-detail__summary .product-detail__description {
+  margin-bottom: 0.75rem;
+}
+
+.product-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  color: #6b7280;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.product-detail__meta-divider {
+  color: #cbd5e1;
+}
+
+.product-detail__meta-item {
+  background: #f8fafc;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
 }
 
 .product-detail__thumbs {
@@ -417,6 +493,9 @@ ul.thumb li img{
 .product-detail__cart-btn {
   border-radius: 0.95rem;
   box-shadow: 0 0.75rem 1.5rem rgba(25, 135, 84, 0.18);
+  width: 72%;
+  max-width: 320px;
+  align-self: flex-start;
 }
 
 .product-review__form,

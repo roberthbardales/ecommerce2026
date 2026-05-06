@@ -22,7 +22,6 @@
             <div class="card product-card h-100 border-0 shadow-sm">
                 <a href="{{ product.get_url }}" class="product-card__image">
                     <img src="{{ product.images.url }}" class="card-img-top" alt="{{ product.product_name }}">
-                    <span class="product-card__badge">Popular</span>
                 </a>
                 <div class="card-body d-flex flex-column">
                     <a href="{{ product.get_url }}" class="product-card__title text-decoration-none">
@@ -38,7 +37,7 @@
                             <i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o{% endif %}" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <a href="{{ product.get_url }}" class="btn btn-outline-primary btn-sm mt-3 w-100">Ver producto</a>
+                    <a href="{{ product.get_url }}" class="btn btn-outline-primary btn-lg mt-3 w-100">Ver producto</a>
                 </div>
             </div>
         </div>
@@ -46,4 +45,27 @@
     </div>
 </div>
 </section>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div id="demoBox" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0d6efd;
+    color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+">
+            <p class="text-center">Inicia Sesion con:</p>
+            <strong>Usuario: </strong>hermano@gmail.com<br>
+            <strong>Contraseña: </strong>123456
+            <p class="text-center">
+                <button class="btn btn-danger mt-2" onclick="document.getElementById('demoBox').style.display='none'">Cerrar</button>
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}
